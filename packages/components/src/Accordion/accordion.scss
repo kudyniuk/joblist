@@ -1,0 +1,11 @@
+.accordion {
+    background: red;
+    
+    &.primary {
+        color: red;
+    }
+
+    &.secondary {
+        color: blue;
+    }
+}
