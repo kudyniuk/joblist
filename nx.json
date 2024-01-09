@@ -1,0 +1,22 @@
+{
+  "tasksRunnerOptions": {
+    "runner": "nx/tasks-runners/default",
+    "options": {
+      "cachableOperations": ["build"]
+    },
+    "default": {
+      "options": {
+        "cacheableOperations": ["build-storybook"]
+      }
+    }
+  },
+  "targetDefaults": {
+    "@nx/vite:test": {
+      "cache": true,
+      "inputs": ["default", "^default"]
+    },
+    "build-storybook": {
+      "cache": true
+    }
+  }
+}

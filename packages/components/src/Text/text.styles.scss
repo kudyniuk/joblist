@@ -1,0 +1,11 @@
+.text {
+    background: red;
+    
+    &.primary {
+        color: red;
+    }
+
+    &.secondary {
+        color: blue;
+    }
+}
