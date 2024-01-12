@@ -12,9 +12,9 @@ export default async function Test() {
 
   return (
     <>
-      <h1>Job List</h1>
+      <h1>Featured job</h1>
       <div className="flex gap-5 max-w-[1200px] m-auto flex-wrap">
-        {jobOffers.map((jobOffer) => <JobOfferCard key={jobOffer.id} name={jobOffer.name} type="full-time" salaryFrom={15000} salaryTo={20000}/>)}
+        {jobOffers.map((jobOffer) => <JobOfferCard key={jobOffer.id} name={jobOffer.name} type={jobOffer.type} salaryFrom={jobOffer.salaryFrom} salaryTo={jobOffer.salaryTo} company={jobOffer.company} className="grow"/>)}
       </div>
     </>
   );

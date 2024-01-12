@@ -1,4 +1,3 @@
-import { AdventureList, Button } from 'shared-ui';
 // import { Adventure } from 'shared-types';
 import Image from 'next/image';
 
@@ -20,7 +19,6 @@ export default async function Home() {
           <li className="hover:underline cursor-pointer">Destination</li>
           <li className="hover:underline cursor-pointer">Tour</li>
           <li className="hover:underline cursor-pointer">Blog</li>
-          <Button className={'ml-auto'}>Join Us</Button>{' '}
         </ul>
       </nav>
       <main>
@@ -35,7 +33,6 @@ export default async function Home() {
                 A Team of experienced tourism professionals will provide you
                 with the best advice and tips for your desire place.
               </p>
-              <Button variant="secondary">Discover Destinations</Button>
             </div>
             <Image
               src={'/thumb_up_image.png'}
@@ -55,7 +52,6 @@ export default async function Home() {
               Discover our fantastic early booking discounts & start planning
               your journey.
             </p>
-            <AdventureList data={adventures} />
           </div>
         </div>
       </main>

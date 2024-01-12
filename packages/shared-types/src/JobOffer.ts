@@ -5,4 +5,7 @@ export interface JobOffer {
   name: string;
   description: string;
   company: Company
+  salaryFrom: number,
+  salaryTo: number,
+  type: string
 }

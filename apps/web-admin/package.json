@@ -11,9 +11,18 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@kudyniuk/components": "workspace:*",
+    "@mui/icons-material": "^5.15.4",
+    "@mui/joy": "5.0.0-beta.22",
+    "@mui/material": "^5.15.4",
+    "@reduxjs/toolkit": "^2.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@kudyniuk/components": "workspace:*"
+    "react-redux": "^9.0.4",
+    "react-router-dom": "^6.21.1",
+    "shared-types": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
