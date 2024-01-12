@@ -23,6 +23,16 @@ export class JobOffersService {
     return this.jobOffersRepository.findOneBy({ id });
   }
 
+  findAllByCompany(companyId: number): Promise<JobOffer[]> {
+    return this.jobOffersRepository.find({
+      where: {
+        company: {
+          id: companyId
+        }
+      }
+    })
+  }
+
   async create({companyId, ...createJobOfferDto}: CreateJobOfferDto): Promise<JobOffer> {
     const company = await this.companiesService.findOne(companyId)
 

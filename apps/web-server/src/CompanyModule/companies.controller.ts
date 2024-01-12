@@ -16,9 +16,4 @@ export class CompaniesController {
   findOne(@Param('id') id: number): Promise<Company> {
     return this.companiesService.findOne(id);
   }
-
-  @Post()
-  create(@Body() createCompanyDto: CreateCompanyDto): Promise<Company> {
-    return this.companiesService.create(createCompanyDto);
-  }
 }

@@ -13,7 +13,16 @@ export class JobOffer implements JobOfferI {
   @Column()
   description: string;
 
+  @Column()
+  salaryFrom: number;
+
+  @Column()
+  salaryTo: number;
+
+  @Column()
+  type: string;
 
   @ManyToOne(() => Company, (company) => company.jobOffers)
   company: Company 
+
 }

@@ -13,8 +13,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "shared-types": "workspace:*",
-    "shared-ui": "workspace:*",
-    "@kudyniuk/components": "workspace: *"
+    "@kudyniuk/components": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20",

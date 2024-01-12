@@ -6,8 +6,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'volkhov': 'var(--font-volkhov)',
-      'poppins': 'var(--font-poppins)'
+      'inter': 'var(--font-inter)',
     },
     fontSize: {
       'h1': ['64px', {
@@ -29,7 +28,7 @@ module.exports = {
     },
     extend: {    
       colors: {
-        primary: 'rgb(34, 34, 34)',
+        primary: '#191F33',
         secondary: 'rgb(113, 113, 113)',
         'orange-500': '#FA7436'
       },

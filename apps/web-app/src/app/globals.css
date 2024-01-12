@@ -5,10 +5,6 @@
 @layer base {
   body {
     @apply text-primary;
-    @apply font-poppins;
-  }
-
-  h1, h2 {
-    @apply font-volkhov;
+    @apply font-inter;
   }
 }
