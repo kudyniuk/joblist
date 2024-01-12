@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { PageTemplate } from "../components/PageTemplate";
-import { CreateCompany } from "../components/CreateCompany";
+import { CreateCompanyForm } from "../components/CreateCompanyForm";
 
 export const CompanyProfilePage: FC = () => {
     return <PageTemplate header="Company Profile">
-        <CreateCompany />
+        <CreateCompanyForm />
     </PageTemplate>
 }

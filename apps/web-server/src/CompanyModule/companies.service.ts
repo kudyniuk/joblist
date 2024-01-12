@@ -22,4 +22,8 @@ export class CompaniesService {
   create(createCompanyDto: CreateCompanyDto): Promise<Company> {
     return this.companiesRepository.save(createCompanyDto);
   }
+
+  update(createCompanyDto: CreateCompanyDto): Promise<Company> {
+    return this.companiesRepository.save(createCompanyDto)
+  }
 }

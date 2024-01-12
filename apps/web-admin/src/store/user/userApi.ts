@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import {Company} from 'shared-types'
+import {Company, JobOffer} from 'shared-types'
 import { RootState } from '../store'
 
 const baseQuery = fetchBaseQuery({ baseUrl: '/api/user', prepareHeaders: (headers, { getState }) => {
@@ -18,9 +18,19 @@ export const userApi = createApi({
     baseQuery: baseQuery,
     endpoints: (builder) => ({
       getUserCompany: builder.query<Company, void>({
-        query: () => `company/`,
+        query: () => `company`,
       }),
+      updateUserCompany: builder.mutation<Company, {name: string, address: string}>({
+          query: (company) => ({
+            url: 'company',
+            method: 'POST',
+            body: company
+          })
+      }),
+      getUserJobOffers: builder.query<JobOffer[], void>({
+        query: () => "jobOffers"
+      })
     }),
   })
 
-export const {useGetUserCompanyQuery} = userApi
+export const {useGetUserCompanyQuery, useUpdateUserCompanyMutation, useGetUserJobOffersQuery} = userApi
