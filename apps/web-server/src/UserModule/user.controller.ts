@@ -1,72 +1,42 @@
-import { Body, Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Res, UseGuards, NotFoundException } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Request, Response } from 'express';
 import { Company } from 'shared-types';
 import { UserService } from './user.service';
 import { CreateCompanyDto } from '../CompanyModule';
 import { JobOffer } from 'src/JobOffersModule';
+import { UserId } from 'src/decorators';
 
 interface User {
   sub: string
 }
 
 @Controller('user')
+@UseGuards(AuthGuard('jwt'))
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('/company')
-  @UseGuards(AuthGuard('jwt'))
-  async getUserCompany(@Req() req: Request, @Res() res: Response): Promise<Company> {
+  @Get('company')
+  async getUserCompany(@UserId() userId: UserId): Promise<Company> {
+    const user = await this.userService.findOne(userId)
 
-    if(!req.user) {
-      res.status(401).send()
-      return
+    if(user && user.company) {
+      return user.company
     }
 
-    const id = (req.user as User).sub
-
-    const user = await this.userService.findOne(id)
-
-    if(!user) {
-      this.userService.create(id)      
-      res.status(404).send()
-      return
-    }
-
-    if(user.company) {
-      res.send(user.company)
-      return
-    } else {
-      res.status(404).send()
-    }
+    throw new NotFoundException("Not Found Company")
   }
 
-  @Post('/company')
-  @UseGuards(AuthGuard('jwt'))
-  async createOrUpdateUserCompany(@Req() req: Request, @Res() res: Response, @Body() createCompanyDto: CreateCompanyDto): Promise<Company> {
-    if(!req.user) {
-      res.status(401).send()
-      return
-    }
+  @Post('company')
+  async createOrUpdateUserCompany(@UserId() userId: UserId, @Body() createCompanyDto: CreateCompanyDto): Promise<Company> {
+    const user = await this.userService.findOneOrCreate(userId)
+    const company = await this.userService.createOrUpdateCompany(user, createCompanyDto)
 
-    const id = (req.user as User).sub
-    const user = await this.userService.findOne(id)
-
-    if(!user) {
-      res.status(504).send()
-    }
-
-    const company = await this.userService.createOrUpdateCompany(user.id, createCompanyDto)
-
-    res.send(company)
-    return 
+    return company
   }
 
   @Get('jobOffers')
-  @UseGuards(AuthGuard('jwt'))
-  getJobOffers(@Req() req: Request): Promise<JobOffer[]> {
-    const userId = (req.user as User).sub
-
+  getJobOffers(@UserId() userId: UserId): Promise<JobOffer[]> {
     return this.userService.findAllUserJobOffers(userId)
   }
 }

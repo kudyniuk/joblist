@@ -19,11 +19,7 @@ export class CompaniesService {
     return this.companiesRepository.findOneBy({ id });
   }
 
-  create(createCompanyDto: CreateCompanyDto): Promise<Company> {
+  save(createCompanyDto: CreateCompanyDto): Promise<Company> {
     return this.companiesRepository.save(createCompanyDto);
-  }
-
-  update(createCompanyDto: CreateCompanyDto): Promise<Company> {
-    return this.companiesRepository.save(createCompanyDto)
   }
 }

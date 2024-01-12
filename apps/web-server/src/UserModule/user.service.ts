@@ -8,7 +8,6 @@ import { JobOffersService } from 'src/JobOffersModule/job-offers.service';
 
 @Injectable()
 export class UserService {
-  
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
@@ -33,19 +32,26 @@ export class UserService {
     })
   }
 
-  async createOrUpdateCompany(userId: string, createCompanyDto: CreateCompanyDto): Promise<Company> {
-    const user = await this.findOne(userId)
-    const company = user.company
+  async findOneOrCreate(id: string): Promise<User> {
+    let user = await this.findOne(id)
 
-    if(company) {
-      return this.companiesService.update({
-        ...company,
+    if(!user) {
+      user = await this.create(id)
+    }
+
+    return user
+  }
+
+  async createOrUpdateCompany(user: User, createCompanyDto: CreateCompanyDto): Promise<Company> {
+    if(user.company) {
+      return this.companiesService.save({
+        ...user.company,
         ...createCompanyDto
       })
     } else {
-      const company = await this.companiesService.create(createCompanyDto)
+      const company = await this.companiesService.save(createCompanyDto)
       user.company = company
-      this.usersRepository.save(user)
+      await this.usersRepository.save(user)
       return company
     }
   }
