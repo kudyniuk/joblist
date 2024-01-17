@@ -1,60 +1,253 @@
-// import { Adventure } from 'shared-types';
-import Image from 'next/image';
+import { JobOffer } from "@kudyniuk/shared-types";
+import { Button, CategoryCard, FactCard, Input, JobOfferCard } from "@kudyniuk/components"
+import { ContentLimiter } from "@/components/ContentLimiter";
 
-// const getData = async (): Promise<Adventure[]> => {
-//   const res = await fetch('http://localhost:3001/adventures');
-//   return await res.json();
-// };
+const getData = async (): Promise<JobOffer[]> => {
+  const res = await fetch('http://localhost:3001/jobOffers', { next: { revalidate: 10 } });
+  return await res.json();
+};
 
-export default async function Home() {
-  // const adventures = await getData();
-  const adventures: any = [];
+export default async function Test() {
+  const jobOffers = await getData();
+
   return (
     <>
-      <nav className="bg-primary py-12">
-        <ul className="flex max-w-content m-auto gap-8 items-center">
-          <li className="font-volkhov text-h3">Adventure</li>
-          <li className="ml-auto hover:underline cursor-pointer">Home</li>
-          <li className="hover:underline cursor-pointer">About</li>
-          <li className="hover:underline cursor-pointer">Destination</li>
-          <li className="hover:underline cursor-pointer">Tour</li>
-          <li className="hover:underline cursor-pointer">Blog</li>
-        </ul>
+      {/* Navigation */}
+      <nav className="bg-gray-50">
+        <ContentLimiter className="flex justify-between  text-sm text-gray-600">
+          <ul className="flex gap-6">
+            {/* TODO: Fix active button */}
+            <li className="py-[14px] text-blue-500 font-medium" style={{ boxShadow: '0px -2px 0px 0px #0A65CC inset' }}>Home</li>
+            <li className="py-[14px]">Find Job</li>
+            <li className="py-[14px]">Employers</li>
+            <li className="py-[14px]">Candidates</li>
+            <li className="py-[14px]">Pricing Plans</li>
+            <li className="py-[14px]">Customer Supports</li>
+          </ul>
+          <div className="flex gap-6 py-[14px]">
+            <div>
+              +0-000-000-0000
+            </div>
+            <div>
+              English
+            </div>
+          </div>
+        </ContentLimiter>
       </nav>
-      <main>
-        <div className="bg-primary py-24">
-          <div className="max-w-content m-auto flex justify-between">
-            <div className="max-w-xl">
-              <h1 className="text-h1 mb-8">
-                Get started your exciting{' '}
-                <span className="text-orange-500">journey</span> with us.
-              </h1>
-              <p className="text-p1 mb-16">
-                A Team of experienced tourism professionals will provide you
-                with the best advice and tips for your desire place.
+
+      <ContentLimiter className="flex justify-between items-center py-8">
+        <div className="flex gap-8 items-center basis-full max-w-[600px]">
+          <div className="text-2xl font-semibold">Joblist</div>
+          <Input className="basis-full" placeholder="Job tittle, keyword, company" />
+        </div>
+        <div className="flex gap-3">
+          <Button variant="secondary">
+            Sign In
+          </Button>
+          <Button>
+            Post a Jobs
+          </Button>
+        </div>
+      </ContentLimiter>
+
+      {/* Search */}
+      <div className="bg-gray-50 py-24 ">
+        <ContentLimiter>
+          <h1 className="text-[56px] font-bold mb-6">Find a job that suits your interest & skills.</h1>
+          <h2 className="text-lg text-gray-600  ">
+            Aliquam vitae turpis in diam convallis finibus in at risus. Nullam in scelerisque leo, eget sollicitudin velit bestibulum.
+          </h2>
+          <p className="text-sm mb-24">
+            <span className="text-gray-400">Suggestion: </span>
+            <span>Designer, </span>
+            <span>Programing, </span>
+            <span className="text-blue-500">Digital Marketing, </span>
+            <span>Video, </span>
+            <span>Animation.</span>
+          </p>
+          <div className="flex gap-5 flex-grow">
+            <FactCard className="basis-full" title="1,750,324" description="Live Job" />
+            <FactCard className="basis-full" title="97,354" description="Companies" />
+            <FactCard className="basis-full" title="38,470" description="Candidates" />
+            <FactCard className="basis-full" title="7,353" description="New Jobs" />
+          </div>
+        </ContentLimiter>
+      </div>
+
+      {/* Most Popular Vacancies */}
+      <ContentLimiter className="py-24">
+        <h2 className="text-4xl font-medium mb-[50px] ">Most Popular Vacancies</h2>
+        <ul className="grid grid-cols-4 gap-8 flex-wrap">
+          <li>
+            <h4 className="text-lg font-medium">Anesthesiologists</h4>
+            <div>45,904 Open Positions</div>
+          </li>
+          <li >
+            <h4 className="text-lg font-medium">Surgeons</h4>
+            <div>50,364 Open Positions</div>
+          </li>
+          <li >
+            <h4 className="text-lg font-medium">Obstetricians-Gynecologists</h4>
+            <div>4,339 Open Positions</div>
+          </li>
+          <li>
+            <h4 className="text-lg font-medium">Maxillofacial Surgeons</h4>
+            <div>45,904 Open Positions</div>
+          </li>
+
+          <li>
+            <h4 className="text-lg font-medium">Software Developer</h4>
+            <div>5,364 Open Positions</div>
+          </li>
+          <li>
+            <h4 className="text-lg font-medium">Psychiatrists</h4>
+            <div>4,339 Open Positions</div>
+          </li>
+          <li>
+            <h4 className="text-lg font-medium">Financial Manager</h4>
+            <div>45,904 Open Positions</div>
+          </li>
+
+          <li>
+            <h4 className="text-lg font-medium">Management Analysis</h4>
+            <div>5,364 Open Positions</div>
+          </li>
+          <li className="text-lg font-medium">
+            <h4>IT Manager</h4>
+            <div>41,339 Open Positions</div>
+          </li>
+          <li >
+            <h4 className="text-lg font-medium">Obstetricians-Gynecologists</h4>
+            <div>4,339 Open Positions</div>
+          </li>
+          <li>
+            <h4 className="text-lg font-medium">Maxillofacial Surgeons</h4>
+            <div>45,904 Open Positions</div>
+          </li>
+          <li>
+            <h4 className="text-lg font-medium">Maxillofacial Surgeons</h4>
+            <div>45,904 Open Positions</div>
+          </li>
+        </ul>
+      </ContentLimiter>
+
+      {/* How it work */}
+
+      <div className="bg-gray-50 py-24 mb-12">
+        <ContentLimiter>
+          <h2 className="text-center text-4xl font-medium mb-[50px]">How job list work</h2>
+          <div className="flex text-center gap-6">
+            <div>
+              <div className="text-lg font-medium mb-3">
+                Create account
+              </div>
+              <p className="text-sm text-gray-500">
+                Aliquam facilisis egestas sapien, nec tempor leo tristique at.
               </p>
             </div>
-            <Image
-              src={'/thumb_up_image.png'}
-              width={500}
-              height={530}
-              alt="Join us"
-            />
-          </div>
-        </div>
 
-        <div className="bg-secondary py-24">
-          <div className="max-w-content m-auto">
-            <h1 className="text-h1 mb-6 text-center">
-              Your next <span className="text-orange-500">adventure</span>
-            </h1>
-            <p className="text-p1 mb-16 text-center">
-              Discover our fantastic early booking discounts & start planning
-              your journey.
-            </p>
+            <div>
+              <div className="text-lg font-medium mb-3">
+                Upload CV/Resume
+              </div>
+              <p className="text-sm text-gray-500">
+                Aliquam facilisis egestas sapien, nec tempor leo tristique at.
+              </p>
+            </div>
+
+            <div>
+              <div className="text-lg font-medium mb-3">
+                Find suitable job
+              </div>
+              <p className="text-sm text-gray-500">
+                Aliquam facilisis egestas sapien, nec tempor leo tristique at.
+              </p>
+            </div>
+
+            <div>
+              <div className="text-lg font-medium mb-3">
+                Apply job
+              </div>
+              <p className="text-sm text-gray-500">
+                Aliquam facilisis egestas sapien, nec tempor leo tristique at.
+              </p>
+            </div>
           </div>
+        </ContentLimiter>
+      </div>
+
+      {/* Popular category */}
+      <ContentLimiter className="py-24">
+        <h2 className="text-4xl font-medium mb-[50px] ">Popular category</h2>
+        <div className="grid grid-cols-4 gap-3 flex-wrap">
+          <CategoryCard title="Graphics & Design" description="357 Open position" />
+          <CategoryCard title="Code & Programing" description="312 Open position" />
+          <CategoryCard title="Digital Marketing" description="297 Open position" />
+          <CategoryCard title="Video & Animation" description="125 Open position" />
+
+          <CategoryCard title="Music & Audio" description="204 Open position" />
+          <CategoryCard title="Account & Finance" description="168 Open position" />
+          <CategoryCard title="Health & Care" description="199 Open position" />
+          <CategoryCard title="Data & Science" description="321 Open position" />
         </div>
-      </main>
+      </ContentLimiter>
+
+      <ContentLimiter className="mb-24">
+        <h2 className="text-4xl font-medium mb-[50px] ">Featured job</h2>
+        <div className="flex gap-5 flex-wrap">
+          {jobOffers.map((jobOffer) => <JobOfferCard key={jobOffer.id} name={jobOffer.name} type={jobOffer.type} salaryFrom={jobOffer.salaryFrom} salaryTo={jobOffer.salaryTo} company={jobOffer.company} className="grow" />)}
+        </div>
+      </ContentLimiter>
+
+      <footer className="bg-gray-900">
+        <ContentLimiter className="text-gray-400 pt-24 pb-20 flex gap-8">
+          <div>
+            <h3 className="text-2xl text-white font-semibold mb-6">Job List</h3>
+            <div className="text-lg mb-3">
+              <span>Call now: </span>
+              <span className="text-white font-medium">+0-000-000-0000</span>
+            </div>
+            <div className="text-sm max-w-[312px]">6391 Elgin St. Celina, Delaware 10299, New York, United States of America</div>
+          </div>
+          <div className="flex grow gap-6 justify-between m-auto max-w-[700px]">
+            <ul className="flex flex-col gap-4">
+              <li className="text-white text-xl font-medium">Quick Link</li>
+              <li>About</li>
+              <li>Contact</li>
+              <li>Pricing</li>
+              <li>Blog</li>
+            </ul>
+            <ul className="flex flex-col gap-4">
+              <li className="text-white text-xl font-medium">Quick Link</li>
+              <li>About</li>
+              <li>Contact</li>
+              <li>Pricing</li>
+              <li>Blog</li>
+            </ul>
+            <ul className="flex flex-col gap-4">
+              <li className="text-white text-xl font-medium">Quick Link</li>
+              <li>About</li>
+              <li>Contact</li>
+              <li>Pricing</li>
+              <li>Blog</li>
+            </ul>
+            <ul className="flex flex-col gap-4">
+              <li className="text-white text-xl font-medium">Quick Link</li>
+              <li>About</li>
+              <li>Contact</li>
+              <li>Pricing</li>
+              <li>Blog</li>
+            </ul>
+          </div>
+        </ContentLimiter>
+
+        <div style={{ boxShadow: "0px 1px 0px 0px #2F3338 inset" }}>
+          <ContentLimiter className="text-gray-500 flex justify-between py-6" >
+            <div>@ 2023 JobList - Job Portal. All rights Rserved</div>
+            <div>Social Icons</div>
+          </ContentLimiter>
+        </div>
+      </footer>
     </>
   );
 }

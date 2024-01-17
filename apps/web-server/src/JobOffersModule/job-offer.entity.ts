@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { JobOffer as JobOfferI } from 'shared-types';
+import { JobOffer as JobOfferI } from '@kudyniuk/shared-types';
 import { Company } from '../CompanyModule'
 
 @Entity()
@@ -23,6 +23,6 @@ export class JobOffer implements JobOfferI {
   type: string;
 
   @ManyToOne(() => Company, (company) => company.jobOffers)
-  company: Company 
+  company: Company
 
 }

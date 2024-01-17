@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@kudyniuk/theme": "workspace:*",
-    "shared-types": "workspace:*",
+    "@kudyniuk/shared-types": "workspace:*",
     "@stylexjs/stylex": "^0.4.1",
     "classnames": "^2.3.2",
     "react": "^18.2.0",

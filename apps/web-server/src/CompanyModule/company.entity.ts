@@ -1,8 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Company as CompanyI } from 'shared-types';
+import { Company as CompanyI } from '@kudyniuk/shared-types';
 import { JobOffer } from '../JobOffersModule';
 import { User } from "../UserModule"
-
 @Entity()
 export class Company implements CompanyI {
   @PrimaryGeneratedColumn()

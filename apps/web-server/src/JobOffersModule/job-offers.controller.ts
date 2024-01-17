@@ -3,10 +3,12 @@ import { JobOffersService } from './job-offers.service';
 import { CreateJobOfferDto } from './create-job-offer.dto';
 import { JobOffer } from './job-offer.entity';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('jobOffers')
+@ApiTags("Jobs")
 export class JobOffersController {
-  constructor(private readonly jobOffersService: JobOffersService) {}
+  constructor(private readonly jobOffersService: JobOffersService) { }
 
   // @UseGuards(AuthGuard("jwt"))
   @Get()
@@ -27,5 +29,5 @@ export class JobOffersController {
   @Delete(':id')
   remove(@Param("id") id: number): Promise<JobOffer> {
     return this.jobOffersService.removeOne(id)
-  } 
+  }
 }
