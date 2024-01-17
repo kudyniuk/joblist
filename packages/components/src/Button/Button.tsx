@@ -8,7 +8,7 @@ type Props = {
 }
 
 const PRIMARY_CSS = 'bg-blue-500 text-white'
-const SECONDARY_CSS = 'border border-blue-100 text-blue-500'
+const SECONDARY_CSS = 'border bg-white border-blue-100 text-blue-500'
 
 
 export const Button: FC<Props> = ({ variant = "primary", children = "Click me", className }) => {

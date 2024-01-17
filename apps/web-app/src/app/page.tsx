@@ -1,6 +1,7 @@
 import { JobOffer } from "@kudyniuk/shared-types";
-import { Button, CategoryCard, FactCard, Input, JobOfferCard } from "@kudyniuk/components"
+import { Button, CategoryCard, FactCard, Input, JobOfferCard, RegisterNow } from "@kudyniuk/components"
 import { ContentLimiter } from "@/components/ContentLimiter";
+import Image from "next/image";
 
 const getData = async (): Promise<JobOffer[]> => {
   const res = await fetch('http://localhost:3001/jobOffers', { next: { revalidate: 10 } });
@@ -53,24 +54,31 @@ export default async function Test() {
       {/* Search */}
       <div className="bg-gray-50 py-24 ">
         <ContentLimiter>
-          <h1 className="text-[56px] font-bold mb-6">Find a job that suits your interest & skills.</h1>
-          <h2 className="text-lg text-gray-600  ">
-            Aliquam vitae turpis in diam convallis finibus in at risus. Nullam in scelerisque leo, eget sollicitudin velit bestibulum.
-          </h2>
-          <p className="text-sm mb-24">
-            <span className="text-gray-400">Suggestion: </span>
-            <span>Designer, </span>
-            <span>Programing, </span>
-            <span className="text-blue-500">Digital Marketing, </span>
-            <span>Video, </span>
-            <span>Animation.</span>
-          </p>
+          <div className="flex justify-between gap-8 mb-24">
+            <div className="max-w-[680px]">
+              <h1 className="text-[56px] font-bold mb-6 max-w-[650px]">Find a job that suits your interest & skills.</h1>
+              <h2 className="text-lg text-gray-600 max-w-[540px] mb-8">
+                Aliquam vitae turpis in diam convallis finibus in at risus. Nullam in scelerisque leo, eget sollicitudin velit bestibulum.
+              </h2>
+              <Input className="w-full mb-6" />
+              <p className="text-sm ">
+                <span className="text-gray-400">Suggestion: </span>
+                <span>Designer, </span>
+                <span>Programing, </span>
+                <span className="text-blue-500">Digital Marketing, </span>
+                <span>Video, </span>
+                <span>Animation.</span>
+              </p>
+            </div>
+            <Image src={"/illustration.svg"} alt="Man with computer" height={382} width={492} />
+          </div>
           <div className="flex gap-5 flex-grow">
             <FactCard className="basis-full" title="1,750,324" description="Live Job" />
             <FactCard className="basis-full" title="97,354" description="Companies" />
             <FactCard className="basis-full" title="38,470" description="Candidates" />
             <FactCard className="basis-full" title="7,353" description="New Jobs" />
           </div>
+
         </ContentLimiter>
       </div>
 
@@ -194,9 +202,15 @@ export default async function Test() {
 
       <ContentLimiter className="mb-24">
         <h2 className="text-4xl font-medium mb-[50px] ">Featured job</h2>
-        <div className="flex gap-5 flex-wrap">
+        <div className="grid grid-cols-3 gap-5">
           {jobOffers.map((jobOffer) => <JobOfferCard key={jobOffer.id} name={jobOffer.name} type={jobOffer.type} salaryFrom={jobOffer.salaryFrom} salaryTo={jobOffer.salaryTo} company={jobOffer.company} className="grow" />)}
         </div>
+      </ContentLimiter>
+
+
+      <ContentLimiter className="flex gap-6 mb-24">
+        <RegisterNow className="basis-full bg-[url('/candidates.png')]" title="Become a Candidate" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor convallis efficitur." />
+        <RegisterNow className="basis-full bg-[url('/employers.png')] bg-cover" title="Become a Employers" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor convallis efficitur." />
       </ContentLimiter>
 
       <footer className="bg-gray-900">
