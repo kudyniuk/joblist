@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { JobOfferCard } from './JobOfferCard';
 
-//👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof JobOfferCard> = {
   component: JobOfferCard,
 };
@@ -15,6 +14,11 @@ export const Story: Story = {
     name: "Techical Support Specialist",
     type: "Part-Time",
     salaryFrom: 20000,
-    salaryTo: 25000
+    salaryTo: 25000,
+    company: {
+      id: 1,
+      name: "Google Inc",
+      address: "Krakow, Poland"
+    }
   },
 };

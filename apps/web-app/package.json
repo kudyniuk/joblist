@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@kudyniuk/components": "workspace:*",
+    "@kudyniuk/theme": "workspace:*",
+    "classnames": "^2.3.2",
     "next": "14.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "shared-types": "workspace:*",
-    "@kudyniuk/components": "workspace:*"
+    "@kudyniuk/shared-types": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20",

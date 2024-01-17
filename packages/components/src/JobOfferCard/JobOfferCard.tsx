@@ -1,13 +1,11 @@
 import classNames from 'classnames';
-import {JobOffer} from 'shared-types'
+import { JobOffer } from '@kudyniuk/shared-types'
 
-type Props  = {
+type Props = {
     className?: string
 } & Omit<JobOffer, 'description' | 'id'>
 
-
-
-export const JobOfferCard: React.FC<Props> = ({name, type, salaryFrom, salaryTo, company = {}, className}) => {
+export const JobOfferCard: React.FC<Props> = ({ name, type, salaryFrom, salaryTo, company, className }) => {
     return <div className={classNames("p-6 rounded-lg shadow-md border border-solid border-gray-100 ", className)}>
         <div className='text-lg font-medium'>{name}</div>
         <div className="flex gap-2 mb-5">

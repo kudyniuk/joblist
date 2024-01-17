@@ -1,5 +1,5 @@
 import { Entity, ManyToOne, PrimaryColumn } from 'typeorm';
-import { User as UserI } from 'shared-types';
+import { User as UserI } from '@kudyniuk/shared-types';
 import { Company } from '../CompanyModule'
 
 @Entity()

@@ -1,5 +1,5 @@
 {
-  "name": "shared-types",
+  "name": "@kudyniuk/shared-types",
   "version": "1.0.0",
   "description": "",
   "types": "src/index.ts",
