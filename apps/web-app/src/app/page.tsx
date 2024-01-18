@@ -1,18 +1,26 @@
 import { Button, CategoryCard, FactCard, Input, JobOfferCard, RegisterNow } from "@kudyniuk/components"
-import { JobOffer } from "@kudyniuk/shared-types"
+import { JobOffer, Stats } from "@kudyniuk/shared-types"
 import Image from "next/image"
 
 import { ContentLimiter } from "@/components/ContentLimiter"
 
-const getData = async (): Promise<JobOffer[]> => {
+const getJobOffers = async (): Promise<JobOffer[]> => {
   const res = await fetch("http://localhost:3001/jobOffers", {
     next: { revalidate: 10 },
   })
   return await res.json()
 }
 
+const getStats = async (): Promise<Stats> => {
+  const res = await fetch("http://localhost:3001/stats", {
+    next: { revalidate: 10 },
+  })
+  return await res.json()
+}
+
 export default async function Test() {
-  const jobOffers = await getData()
+  const jobOffers = await getJobOffers()
+  const stats = await getStats()
 
   return (
     <>
@@ -70,10 +78,10 @@ export default async function Test() {
             <Image src={"/illustration.svg"} alt="Man with computer" height={382} width={492} />
           </div>
           <div className="flex gap-5 flex-grow">
-            <FactCard className="basis-full" title="1,750,324" description="Live Job" />
-            <FactCard className="basis-full" title="97,354" description="Companies" />
+            <FactCard className="basis-full" title={stats.jobOffers.toString()} description="Live Job" />
+            <FactCard className="basis-full" title={stats.companies.toString()} description="Companies" />
             <FactCard className="basis-full" title="38,470" description="Candidates" />
-            <FactCard className="basis-full" title="7,353" description="New Jobs" />
+            <FactCard className="basis-full" title={stats.newJobOffers.toString()} description="New Jobs" />
           </div>
         </ContentLimiter>
       </div>
@@ -82,56 +90,12 @@ export default async function Test() {
       <ContentLimiter className="py-24">
         <h2 className="text-4xl font-medium mb-[50px] ">Most Popular Vacancies</h2>
         <ul className="grid grid-cols-4 gap-8 flex-wrap">
-          <li>
-            <h4 className="text-lg font-medium">Anesthesiologists</h4>
-            <div>45,904 Open Positions</div>
-          </li>
-          <li>
-            <h4 className="text-lg font-medium">Surgeons</h4>
-            <div>50,364 Open Positions</div>
-          </li>
-          <li>
-            <h4 className="text-lg font-medium">Obstetricians-Gynecologists</h4>
-            <div>4,339 Open Positions</div>
-          </li>
-          <li>
-            <h4 className="text-lg font-medium">Maxillofacial Surgeons</h4>
-            <div>45,904 Open Positions</div>
-          </li>
-
-          <li>
-            <h4 className="text-lg font-medium">Software Developer</h4>
-            <div>5,364 Open Positions</div>
-          </li>
-          <li>
-            <h4 className="text-lg font-medium">Psychiatrists</h4>
-            <div>4,339 Open Positions</div>
-          </li>
-          <li>
-            <h4 className="text-lg font-medium">Financial Manager</h4>
-            <div>45,904 Open Positions</div>
-          </li>
-
-          <li>
-            <h4 className="text-lg font-medium">Management Analysis</h4>
-            <div>5,364 Open Positions</div>
-          </li>
-          <li className="text-lg font-medium">
-            <h4>IT Manager</h4>
-            <div>41,339 Open Positions</div>
-          </li>
-          <li>
-            <h4 className="text-lg font-medium">Obstetricians-Gynecologists</h4>
-            <div>4,339 Open Positions</div>
-          </li>
-          <li>
-            <h4 className="text-lg font-medium">Maxillofacial Surgeons</h4>
-            <div>45,904 Open Positions</div>
-          </li>
-          <li>
-            <h4 className="text-lg font-medium">Maxillofacial Surgeons</h4>
-            <div>45,904 Open Positions</div>
-          </li>
+          {stats.popularVacancies.map(({ name, value }) => (
+            <li key={name}>
+              <h4 className="text-lg font-medium">{name}</h4>
+              <div>{value} Open Positions</div>
+            </li>
+          ))}
         </ul>
       </ContentLimiter>
 
