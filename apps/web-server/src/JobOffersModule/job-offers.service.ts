@@ -1,14 +1,15 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { JobOffer } from './job-offer.entity';
-import { Repository } from 'typeorm';
-import { CreateJobOfferDto } from './create-job-offer.dto';
-import { CompaniesService } from 'src/CompanyModule';
+import { Inject, Injectable } from "@nestjs/common"
+import { InjectRepository } from "@nestjs/typeorm"
+import { CompaniesService } from "src/CompanyModule"
+import { Repository } from "typeorm"
+
+import { CreateJobOfferDto } from "./create-job-offer.dto"
+import { JobOffer } from "./job-offer.entity"
 
 @Injectable()
 export class JobOffersService {
   @Inject(CompaniesService)
-  private readonly companiesService: CompaniesService;
+  private readonly companiesService: CompaniesService
 
   constructor(
     @InjectRepository(JobOffer)
@@ -16,27 +17,30 @@ export class JobOffersService {
   ) {}
 
   findAll(): Promise<JobOffer[]> {
-    return this.jobOffersRepository.find({relationLoadStrategy: "join", relations: {company: true}});
+    return this.jobOffersRepository.find({
+      relationLoadStrategy: "join",
+      relations: { company: true },
+    })
   }
 
   findOne(id: number): Promise<JobOffer> {
-    return this.jobOffersRepository.findOneBy({ id });
+    return this.jobOffersRepository.findOneBy({ id })
   }
 
   findAllByCompany(companyId: number): Promise<JobOffer[]> {
     return this.jobOffersRepository.find({
       where: {
         company: {
-          id: companyId
-        }
-      }
+          id: companyId,
+        },
+      },
     })
   }
 
-  async create({companyId, ...createJobOfferDto}: CreateJobOfferDto): Promise<JobOffer> {
+  async create({ companyId, ...createJobOfferDto }: CreateJobOfferDto): Promise<JobOffer> {
     const company = await this.companiesService.findOne(companyId)
 
-    return this.jobOffersRepository.save({...createJobOfferDto, company});
+    return this.jobOffersRepository.save({ ...createJobOfferDto, company })
   }
 
   async removeOne(id: number): Promise<JobOffer> {

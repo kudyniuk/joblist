@@ -1,28 +1,28 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { JobOffer as JobOfferI } from '@kudyniuk/shared-types';
-import { Company } from '../CompanyModule'
+import { JobOffer as JobOfferI } from "@kudyniuk/shared-types"
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+
+import { Company } from "../CompanyModule"
 
 @Entity()
 export class JobOffer implements JobOfferI {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number
 
   @Column()
-  name: string;
+  name: string
 
   @Column()
-  description: string;
+  description: string
 
   @Column()
-  salaryFrom: number;
+  salaryFrom: number
 
   @Column()
-  salaryTo: number;
+  salaryTo: number
 
   @Column()
-  type: string;
+  type: string
 
   @ManyToOne(() => Company, (company) => company.jobOffers)
   company: Company
-
 }

@@ -1,2 +1,2 @@
-export * from './Authorization'
-export * from './AppViewResolver'
+export * from './Authorization';
+export * from './AppViewResolver';

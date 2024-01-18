@@ -1,17 +1,18 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Company as CompanyI } from '@kudyniuk/shared-types';
-import { JobOffer } from '../JobOffersModule';
+import { Company as CompanyI } from "@kudyniuk/shared-types"
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+
+import { JobOffer } from "../JobOffersModule"
 import { User } from "../UserModule"
 @Entity()
 export class Company implements CompanyI {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number
 
   @Column()
-  name: string;
+  name: string
 
   @Column()
-  address: string;
+  address: string
 
   @OneToMany(() => JobOffer, (jobOffer) => jobOffer.company)
   jobOffers: JobOffer[]

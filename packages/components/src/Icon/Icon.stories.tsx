@@ -1,28 +1,28 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react"
 
-import { Icon } from './Icon';
+import { Icon } from "./Icon"
 
 const meta: Meta<typeof Icon> = {
   component: Icon,
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof Icon>;
+export default meta
+type Story = StoryObj<typeof Icon>
 
 export const Buildings: Story = {
   args: {
-    name: 'Buildings'
+    name: "Buildings",
   },
-};
+}
 
 export const Briefcase: Story = {
   args: {
-    name: 'Briefcase'
+    name: "Briefcase",
   },
-};
+}
 
 export const Users: Story = {
   args: {
-    name: 'Users'
+    name: "Users",
   },
-};
+}

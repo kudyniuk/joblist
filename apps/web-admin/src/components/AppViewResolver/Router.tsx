@@ -1,33 +1,28 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import { JoyOrderDashboardTemplate } from "../Layout/JoyOrderDashboardTemplate";
-import { CompanyProfilePage, HomePage, MessagesPage } from "../../pages";
-
-
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { JoyOrderDashboardTemplate } from '../Layout/JoyOrderDashboardTemplate';
+import { CompanyProfilePage, HomePage, MessagesPage } from '../../pages';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <JoyOrderDashboardTemplate />,
     children: [
       {
-        path: "/",
-        element: <HomePage />
+        path: '/',
+        element: <HomePage />,
       },
       {
         path: 'company',
-        element: <CompanyProfilePage />
+        element: <CompanyProfilePage />,
       },
       {
         path: 'messages',
-        element: <MessagesPage />
-      }
-    ]
+        element: <MessagesPage />,
+      },
+    ],
   },
 ]);
 
 export const Router: React.FC = () => {
-  return <RouterProvider router={router} />
-}
+  return <RouterProvider router={router} />;
+};

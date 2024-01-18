@@ -1,2 +1,2 @@
-export * from './AuthorizationConfigProvider'
-export * from './AuthTokenSetter'
+export * from './AuthorizationConfigProvider';
+export * from './AuthTokenSetter';

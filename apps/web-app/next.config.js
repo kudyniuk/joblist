@@ -2,8 +2,8 @@
 const nextConfig = {
   transpilePackages: [],
   experimental: {
-    optimizePackageImports: ['@kudyniuk/components']
-  }
-};
+    optimizePackageImports: ["@kudyniuk/components"],
+  },
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

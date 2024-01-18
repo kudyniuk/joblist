@@ -1,14 +1,14 @@
-import { IsNotEmpty, MinLength } from 'class-validator';
+import { IsNotEmpty, MinLength } from "class-validator"
 
 export class CreateJobOfferDto {
   @IsNotEmpty()
   @MinLength(3)
-  name: string;
+  name: string
 
   @IsNotEmpty()
   @MinLength(6)
-  description: string;
+  description: string
 
   @IsNotEmpty()
-  companyId: number;
+  companyId: number
 }
