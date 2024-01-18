@@ -1,5 +1,4 @@
 import { Module } from "@nestjs/common"
-import { TypeOrmModule } from "@nestjs/typeorm"
 
 import { JobOffersModule } from "../JobOffersModule"
 import { StatsController } from "./stats.controller"
@@ -11,4 +10,4 @@ import { StatsService } from "./stats.service"
   controllers: [StatsController],
   exports: [],
 })
-export class StatsModule { }
+export class StatsModule {}

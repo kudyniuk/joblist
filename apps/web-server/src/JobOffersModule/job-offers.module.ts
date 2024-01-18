@@ -12,4 +12,4 @@ import { JobOffersService } from "./job-offers.service"
   providers: [JobOffersService],
   exports: [JobOffersService, CompaniesModule],
 })
-export class JobOffersModule { }
+export class JobOffersModule {}

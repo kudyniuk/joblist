@@ -90,10 +90,12 @@ export default async function Test() {
       <ContentLimiter className="py-24">
         <h2 className="text-4xl font-medium mb-[50px] ">Most Popular Vacancies</h2>
         <ul className="grid grid-cols-4 gap-8 flex-wrap">
-          {stats.popularVacancies.map(({ name, value }) => <li key={name}>
-            <h4 className="text-lg font-medium">{name}</h4>
-            <div>{value} Open Positions</div>
-          </li>)}
+          {stats.popularVacancies.map(({ name, value }) => (
+            <li key={name}>
+              <h4 className="text-lg font-medium">{name}</h4>
+              <div>{value} Open Positions</div>
+            </li>
+          ))}
         </ul>
       </ContentLimiter>
 
