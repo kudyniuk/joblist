@@ -1,5 +1,5 @@
 {
   "version": 2,
   "framework": "nextjs",
-  "buildCommand": "next build"
+  "buildCommand": "nx build @kudyniuk/web-app"
 }
