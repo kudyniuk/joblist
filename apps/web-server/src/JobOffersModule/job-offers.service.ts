@@ -1,8 +1,8 @@
 import { Inject, Injectable } from "@nestjs/common"
 import { InjectRepository } from "@nestjs/typeorm"
-import { CompaniesService } from "src/CompanyModule"
 import { Repository } from "typeorm"
 
+import { CompaniesService } from "../CompanyModule"
 import { CreateJobOfferDto } from "./create-job-offer.dto"
 import { JobOffer } from "./job-offer.entity"
 
@@ -14,7 +14,7 @@ export class JobOffersService {
   constructor(
     @InjectRepository(JobOffer)
     private jobOffersRepository: Repository<JobOffer>,
-  ) {}
+  ) { }
 
   findAll(): Promise<JobOffer[]> {
     return this.jobOffersRepository.find({
