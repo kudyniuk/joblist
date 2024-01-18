@@ -1,23 +1,28 @@
-import { Body, Controller, Get, Post, Req, Res, UseGuards, NotFoundException } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
-import { UserService } from './user.service';
-import { Company, CreateCompanyDto } from '../CompanyModule';
-import { JobOffer } from '../JobOffersModule';
-import { UserId } from '../decorators';
-import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Get, NotFoundException, Post, UseGuards } from "@nestjs/common"
+import { AuthGuard } from "@nestjs/passport"
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger"
 
-@Controller('user')
-@UseGuards(AuthGuard('jwt'))
+import { Company, CreateCompanyDto } from "../CompanyModule"
+import { UserId } from "../decorators"
+import { JobOffer } from "../JobOffersModule"
+import { UserService } from "./user.service"
+
+@Controller("user")
+@UseGuards(AuthGuard("jwt"))
 @ApiTags("User")
 @ApiBearerAuth()
 export class UserController {
-  constructor(private readonly userService: UserService) { }
+  constructor(private readonly userService: UserService) {}
 
-  @Get('company')
+  @Get("company")
   @ApiOperation({ summary: "Return user's company data" })
-  @ApiResponse({ status: 200, type: Company, description: "Return user's company data." })
-  @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiResponse({ status: 404, description: 'Not found.' })
+  @ApiResponse({
+    status: 200,
+    type: Company,
+    description: "Return user's company data.",
+  })
+  @ApiResponse({ status: 403, description: "Forbidden." })
+  @ApiResponse({ status: 404, description: "Not found." })
   async getUserCompany(@UserId() userId: UserId): Promise<Company> {
     const user = await this.userService.findOne(userId)
 
@@ -28,7 +33,7 @@ export class UserController {
     throw new NotFoundException("Not Found Company")
   }
 
-  @Post('company')
+  @Post("company")
   @ApiOperation({ summary: "Update user's company data" })
   async createOrUpdateUserCompany(@UserId() userId: UserId, @Body() createCompanyDto: CreateCompanyDto): Promise<Company> {
     const user = await this.userService.findOneOrCreate(userId)
@@ -37,9 +42,13 @@ export class UserController {
     return company
   }
 
-  @Get('jobOffers')
+  @Get("jobOffers")
   @ApiOperation({ summary: "Return user's job offers data" })
-  @ApiResponse({ status: 200, type: [JobOffer], description: "Return user's job offers data." })
+  @ApiResponse({
+    status: 200,
+    type: [JobOffer],
+    description: "Return user's job offers data.",
+  })
   getJobOffers(@UserId() userId: UserId): Promise<JobOffer[]> {
     return this.userService.findAllUserJobOffers(userId)
   }

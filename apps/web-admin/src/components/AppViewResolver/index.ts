@@ -1,2 +1,2 @@
-export * from './AppViewResolver'
-export * from './Router'
+export * from './AppViewResolver';
+export * from './Router';

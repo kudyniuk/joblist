@@ -1,15 +1,18 @@
-import { JobOffer } from "@kudyniuk/shared-types";
 import { Button, CategoryCard, FactCard, Input, JobOfferCard, RegisterNow } from "@kudyniuk/components"
-import { ContentLimiter } from "@/components/ContentLimiter";
-import Image from "next/image";
+import { JobOffer } from "@kudyniuk/shared-types"
+import Image from "next/image"
+
+import { ContentLimiter } from "@/components/ContentLimiter"
 
 const getData = async (): Promise<JobOffer[]> => {
-  const res = await fetch('http://localhost:3001/jobOffers', { next: { revalidate: 10 } });
-  return await res.json();
-};
+  const res = await fetch("http://localhost:3001/jobOffers", {
+    next: { revalidate: 10 },
+  })
+  return await res.json()
+}
 
 export default async function Test() {
-  const jobOffers = await getData();
+  const jobOffers = await getData()
 
   return (
     <>
@@ -18,7 +21,9 @@ export default async function Test() {
         <ContentLimiter className="flex justify-between  text-sm text-gray-600">
           <ul className="flex gap-6">
             {/* TODO: Fix active button */}
-            <li className="py-[14px] text-blue-500 font-medium" style={{ boxShadow: '0px -2px 0px 0px #0A65CC inset' }}>Home</li>
+            <li className="py-[14px] text-blue-500 font-medium" style={{ boxShadow: "0px -2px 0px 0px #0A65CC inset" }}>
+              Home
+            </li>
             <li className="py-[14px]">Find Job</li>
             <li className="py-[14px]">Employers</li>
             <li className="py-[14px]">Candidates</li>
@@ -26,12 +31,8 @@ export default async function Test() {
             <li className="py-[14px]">Customer Supports</li>
           </ul>
           <div className="flex gap-6 py-[14px]">
-            <div>
-              +0-000-000-0000
-            </div>
-            <div>
-              English
-            </div>
+            <div>+0-000-000-0000</div>
+            <div>English</div>
           </div>
         </ContentLimiter>
       </nav>
@@ -42,12 +43,8 @@ export default async function Test() {
           <Input className="basis-full" placeholder="Job tittle, keyword, company" />
         </div>
         <div className="flex gap-3">
-          <Button variant="secondary">
-            Sign In
-          </Button>
-          <Button>
-            Post a Jobs
-          </Button>
+          <Button variant="secondary">Sign In</Button>
+          <Button>Post a Jobs</Button>
         </div>
       </ContentLimiter>
 
@@ -78,7 +75,6 @@ export default async function Test() {
             <FactCard className="basis-full" title="38,470" description="Candidates" />
             <FactCard className="basis-full" title="7,353" description="New Jobs" />
           </div>
-
         </ContentLimiter>
       </div>
 
@@ -90,11 +86,11 @@ export default async function Test() {
             <h4 className="text-lg font-medium">Anesthesiologists</h4>
             <div>45,904 Open Positions</div>
           </li>
-          <li >
+          <li>
             <h4 className="text-lg font-medium">Surgeons</h4>
             <div>50,364 Open Positions</div>
           </li>
-          <li >
+          <li>
             <h4 className="text-lg font-medium">Obstetricians-Gynecologists</h4>
             <div>4,339 Open Positions</div>
           </li>
@@ -124,7 +120,7 @@ export default async function Test() {
             <h4>IT Manager</h4>
             <div>41,339 Open Positions</div>
           </li>
-          <li >
+          <li>
             <h4 className="text-lg font-medium">Obstetricians-Gynecologists</h4>
             <div>4,339 Open Positions</div>
           </li>
@@ -146,39 +142,23 @@ export default async function Test() {
           <h2 className="text-center text-4xl font-medium mb-[50px]">How job list work</h2>
           <div className="flex text-center gap-6">
             <div>
-              <div className="text-lg font-medium mb-3">
-                Create account
-              </div>
-              <p className="text-sm text-gray-500">
-                Aliquam facilisis egestas sapien, nec tempor leo tristique at.
-              </p>
+              <div className="text-lg font-medium mb-3">Create account</div>
+              <p className="text-sm text-gray-500">Aliquam facilisis egestas sapien, nec tempor leo tristique at.</p>
             </div>
 
             <div>
-              <div className="text-lg font-medium mb-3">
-                Upload CV/Resume
-              </div>
-              <p className="text-sm text-gray-500">
-                Aliquam facilisis egestas sapien, nec tempor leo tristique at.
-              </p>
+              <div className="text-lg font-medium mb-3">Upload CV/Resume</div>
+              <p className="text-sm text-gray-500">Aliquam facilisis egestas sapien, nec tempor leo tristique at.</p>
             </div>
 
             <div>
-              <div className="text-lg font-medium mb-3">
-                Find suitable job
-              </div>
-              <p className="text-sm text-gray-500">
-                Aliquam facilisis egestas sapien, nec tempor leo tristique at.
-              </p>
+              <div className="text-lg font-medium mb-3">Find suitable job</div>
+              <p className="text-sm text-gray-500">Aliquam facilisis egestas sapien, nec tempor leo tristique at.</p>
             </div>
 
             <div>
-              <div className="text-lg font-medium mb-3">
-                Apply job
-              </div>
-              <p className="text-sm text-gray-500">
-                Aliquam facilisis egestas sapien, nec tempor leo tristique at.
-              </p>
+              <div className="text-lg font-medium mb-3">Apply job</div>
+              <p className="text-sm text-gray-500">Aliquam facilisis egestas sapien, nec tempor leo tristique at.</p>
             </div>
           </div>
         </ContentLimiter>
@@ -203,14 +183,31 @@ export default async function Test() {
       <ContentLimiter className="mb-24">
         <h2 className="text-4xl font-medium mb-[50px] ">Featured job</h2>
         <div className="grid grid-cols-3 gap-5">
-          {jobOffers.map((jobOffer) => <JobOfferCard key={jobOffer.id} name={jobOffer.name} type={jobOffer.type} salaryFrom={jobOffer.salaryFrom} salaryTo={jobOffer.salaryTo} company={jobOffer.company} className="grow" />)}
+          {jobOffers.map((jobOffer) => (
+            <JobOfferCard
+              key={jobOffer.id}
+              name={jobOffer.name}
+              type={jobOffer.type}
+              salaryFrom={jobOffer.salaryFrom}
+              salaryTo={jobOffer.salaryTo}
+              company={jobOffer.company}
+              className="grow"
+            />
+          ))}
         </div>
       </ContentLimiter>
 
-
       <ContentLimiter className="flex gap-6 mb-24">
-        <RegisterNow className="basis-full bg-[url('/candidates.png')]" title="Become a Candidate" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor convallis efficitur." />
-        <RegisterNow className="basis-full bg-[url('/employers.png')] bg-cover" title="Become a Employers" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor convallis efficitur." />
+        <RegisterNow
+          className="basis-full bg-[url('/candidates.png')]"
+          title="Become a Candidate"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor convallis efficitur."
+        />
+        <RegisterNow
+          className="basis-full bg-[url('/employers.png')] bg-cover"
+          title="Become a Employers"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor convallis efficitur."
+        />
       </ContentLimiter>
 
       <footer className="bg-gray-900">
@@ -256,12 +253,12 @@ export default async function Test() {
         </ContentLimiter>
 
         <div style={{ boxShadow: "0px 1px 0px 0px #2F3338 inset" }}>
-          <ContentLimiter className="text-gray-500 flex justify-between py-6" >
+          <ContentLimiter className="text-gray-500 flex justify-between py-6">
             <div>@ 2023 JobList - Job Portal. All rights Rserved</div>
             <div>Social Icons</div>
           </ContentLimiter>
         </div>
       </footer>
     </>
-  );
+  )
 }

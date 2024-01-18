@@ -1,19 +1,20 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { Company, JobOffer } from '@kudyniuk/shared-types'
-import { RootState } from '../store'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { Company, JobOffer } from '@kudyniuk/shared-types';
+import { RootState } from '../store';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: '/api/user', prepareHeaders: (headers, { getState }) => {
-    const state = getState() as RootState
-    const token = state.auth.accessToken
+  baseUrl: '/api/user',
+  prepareHeaders: (headers, { getState }) => {
+    const state = getState() as RootState;
+    const token = state.auth.accessToken;
 
     if (token) {
-      headers.set("authorization", `Bearer ${token}`)
+      headers.set('authorization', `Bearer ${token}`);
     }
 
-    return headers
-  }
-})
+    return headers;
+  },
+});
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -22,17 +23,24 @@ export const userApi = createApi({
     getUserCompany: builder.query<Company, void>({
       query: () => `company`,
     }),
-    updateUserCompany: builder.mutation<Company, { name: string, address: string }>({
+    updateUserCompany: builder.mutation<
+      Company,
+      { name: string; address: string }
+    >({
       query: (company) => ({
         url: 'company',
         method: 'POST',
-        body: company
-      })
+        body: company,
+      }),
     }),
     getUserJobOffers: builder.query<JobOffer[], void>({
-      query: () => "jobOffers"
-    })
+      query: () => 'jobOffers',
+    }),
   }),
-})
+});
 
-export const { useGetUserCompanyQuery, useUpdateUserCompanyMutation, useGetUserJobOffersQuery } = userApi
+export const {
+  useGetUserCompanyQuery,
+  useUpdateUserCompanyMutation,
+  useGetUserJobOffersQuery,
+} = userApi;

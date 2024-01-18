@@ -1,3 +1,3 @@
-export * from './CompanyProfilePage'
+export * from './CompanyProfilePage';
 export * from './HomePage';
-export * from './MessagesPage'
+export * from './MessagesPage';

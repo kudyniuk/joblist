@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react"
 
-import { JobOfferCard } from './JobOfferCard';
+import { JobOfferCard } from "./JobOfferCard"
 
 const meta: Meta<typeof JobOfferCard> = {
   component: JobOfferCard,
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof JobOfferCard>;
+export default meta
+type Story = StoryObj<typeof JobOfferCard>
 
 export const Story: Story = {
   args: {
@@ -18,7 +18,7 @@ export const Story: Story = {
     company: {
       id: 1,
       name: "Google Inc",
-      address: "Krakow, Poland"
-    }
+      address: "Krakow, Poland",
+    },
   },
-};
+}

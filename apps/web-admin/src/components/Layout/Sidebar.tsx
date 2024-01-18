@@ -143,8 +143,9 @@ export default function Sidebar() {
             '--ListItem-radius': (theme) => theme.vars.radius.sm,
           }}
         >
-
-          <SidebarLink to="/" icon={<HomeRoundedIcon />}>Home</SidebarLink>
+          <SidebarLink to="/" icon={<HomeRoundedIcon />}>
+            Home
+          </SidebarLink>
           <SidebarLink to="/company">Company profile</SidebarLink>
 
           <ListItem nested>
@@ -177,10 +178,7 @@ export default function Sidebar() {
 
           <Link to="messages">
             <ListItem>
-              <ListItemButton
-                role="menuitem"
-                component="a"
-              >
+              <ListItemButton role="menuitem" component="a">
                 <QuestionAnswerRoundedIcon />
                 <ListItemContent>
                   <Typography level="title-sm">Messages</Typography>
@@ -191,7 +189,6 @@ export default function Sidebar() {
               </ListItemButton>
             </ListItem>
           </Link>
-
         </List>
 
         <List
@@ -224,7 +221,11 @@ export default function Sidebar() {
           size="sm"
           sx={{ boxShadow: 'none' }}
         >
-          <Stack direction="row" justifyContent="space-between" alignItems="center">
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+          >
             <Typography level="title-sm">Used space</Typography>
             <IconButton size="sm">
               <CloseRoundedIcon />
@@ -233,7 +234,12 @@ export default function Sidebar() {
           <Typography level="body-xs">
             Your team has used 80% of your available space. Need more?
           </Typography>
-          <LinearProgress variant="outlined" value={80} determinate sx={{ my: 1 }} />
+          <LinearProgress
+            variant="outlined"
+            value={80}
+            determinate
+            sx={{ my: 1 }}
+          />
           <Button size="sm" variant="solid">
             Upgrade plan
           </Button>
