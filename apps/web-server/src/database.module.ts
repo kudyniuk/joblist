@@ -10,5 +10,5 @@ export const DatabaseModule = TypeOrmModule.forRoot({
   entities: [],
   synchronize: true,
   autoLoadEntities: true,
-  ssl: true
+  ssl: true,
 })

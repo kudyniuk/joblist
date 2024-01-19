@@ -14,7 +14,7 @@ export class JobOffersService {
   constructor(
     @InjectRepository(JobOffer)
     private jobOffersRepository: Repository<JobOffer>,
-  ) { }
+  ) {}
 
   findAll(): Promise<JobOffer[]> {
     return this.jobOffersRepository.find({
