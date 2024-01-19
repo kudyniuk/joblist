@@ -10,9 +10,6 @@ const baseQuery = fetchBaseQuery({
 
     if (token) {
       headers.set('authorization', `Bearer ${token}`);
-
-      //TODO: Fix cors
-      headers.set("mode", 'no-cors')
     }
 
     return headers;
