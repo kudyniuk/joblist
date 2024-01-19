@@ -9,7 +9,11 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe())
   app.setGlobalPrefix('/api/v1');
-  app.enableCors()
+  app.enableCors({
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+  })
 
   const config = new DocumentBuilder().setTitle("Joblist API").setDescription("The joblist API description").setVersion("1.0").build()
   const document = SwaggerModule.createDocument(app, config)
