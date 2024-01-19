@@ -5,6 +5,7 @@
   "description": "",
   "scripts": {
     "start:dev": "nx run-many -t start:dev --output-style=stream",
+    "start:dev:prod": "nx run-many -t start:dev:prod --output-style=stream",
     "start:database": "nx start:database @kudyniuk/web-server",
     "storybook": "nx storybook @kudyniuk/components",
     "lint": "eslint \"./**/*.{js,jsx,ts,tsx}\"",

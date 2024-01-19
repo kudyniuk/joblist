@@ -5,14 +5,14 @@ import Image from "next/image"
 import { ContentLimiter } from "@/components/ContentLimiter"
 
 const getJobOffers = async (): Promise<JobOffer[]> => {
-  const res = await fetch(process.env.API_URL + "/jobOffers", {
+  const res = await fetch(process.env.API_URL + "jobOffers", {
     next: { revalidate: 10 },
   })
   return await res.json()
 }
 
 const getStats = async (): Promise<Stats> => {
-  const res = await fetch(process.env.API_URL + "/stats", {
+  const res = await fetch(process.env.API_URL + "stats", {
     next: { revalidate: 10 },
   })
   return await res.json()
