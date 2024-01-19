@@ -3,13 +3,16 @@ import { Company, JobOffer } from '@kudyniuk/shared-types';
 import { RootState } from '../store';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: import.meta.env.VITE_API_URL + '/api/v1/user',
+  baseUrl: import.meta.env.VITE_API_URL + 'api/v1/user',
   prepareHeaders: (headers, { getState }) => {
     const state = getState() as RootState;
     const token = state.auth.accessToken;
 
     if (token) {
       headers.set('authorization', `Bearer ${token}`);
+
+      //TODO: Fix cors
+      headers.set("mode", 'no-cors')
     }
 
     return headers;
