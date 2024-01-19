@@ -5,4 +5,3 @@ build
 .nx
 .vscode
 .env
-.env*

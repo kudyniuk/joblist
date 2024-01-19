@@ -1,5 +1,5 @@
 # Use postgres/example user/password credentials
-version: '3.4'
+version: "3.4"
 
 services:
   postgres:
@@ -11,7 +11,7 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_USER=user
       - POSTGRES_HOST=postgres
-      - POSTGRES_DB=adventure_development
+      - POSTGRES_DB=joblist_development
     ports:
       - 5432:5432
 

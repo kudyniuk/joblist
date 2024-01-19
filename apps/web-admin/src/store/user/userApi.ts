@@ -3,7 +3,7 @@ import { Company, JobOffer } from '@kudyniuk/shared-types';
 import { RootState } from '../store';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: '/api/user',
+  baseUrl: import.meta.env.VITE_API_URL + '/api/v1/user',
   prepareHeaders: (headers, { getState }) => {
     const state = getState() as RootState;
     const token = state.auth.accessToken;
