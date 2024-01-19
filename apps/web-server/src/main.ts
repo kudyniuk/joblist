@@ -1,4 +1,4 @@
-import { ValidationPipe } from "@nestjs/common"
+import { ImATeapotException, ValidationPipe } from "@nestjs/common"
 import { NestFactory } from "@nestjs/core"
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger"
 import { config } from "dotenv"
