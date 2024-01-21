@@ -36,6 +36,13 @@ export const userApi = createApi({
     getUserJobOffers: builder.query<JobOffer[], void>({
       query: () => 'jobOffers',
     }),
+    updateUserJobOffer: builder.mutation<JobOffer, {}>({
+      query: (jobOffer) => ({
+        url: "jobOffer",
+        method: 'POST',
+        body: jobOffer
+      })
+    })
   }),
 });
 

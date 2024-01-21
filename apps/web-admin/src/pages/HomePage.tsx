@@ -2,12 +2,14 @@ import { FC } from 'react';
 import { PageTemplate } from '../components/PageTemplate';
 import { useGetUserJobOffersQuery } from '../store';
 import { Table } from '@mui/joy';
+import { CreateJobOfferForm } from '../components/CreateJobOfferForm';
 
 export const HomePage: FC = () => {
   const { data } = useGetUserJobOffersQuery();
 
   return (
     <PageTemplate header="Home">
+      <CreateJobOfferForm />
       <Table variant="outlined" stripe="odd">
         <thead>
           <tr>
