@@ -1,5 +1,5 @@
-import { FC, useEffect, useState } from 'react';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { FC, } from 'react';
+import { CssVarsProvider } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
@@ -8,48 +8,17 @@ import Checkbox from '@mui/joy/Checkbox';
 import Divider from '@mui/joy/Divider';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
-import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
+import IconButton from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
 import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
 import Stack from '@mui/joy/Stack';
-import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
-import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
+
 import BadgeRoundedIcon from '@mui/icons-material/BadgeRounded';
 import GoogleIcon from './GoogleIcon';
 import { useAuth0 } from '@auth0/auth0-react';
+import { ColorSchemeToggle } from '../components/Layout';
 
-function ColorSchemeToggle(props: IconButtonProps) {
-    const { onClick, ...other } = props;
-    const { mode, setMode } = useColorScheme();
-    const [mounted, setMounted] = useState(false);
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-    if (!mounted) {
-        return <IconButton size="sm" variant="outlined" color="neutral" disabled />;
-    }
-    return (
-        <IconButton
-            id="toggle-mode"
-            size="sm"
-            variant="outlined"
-            color="neutral"
-            aria-label="toggle light/dark mode"
-            {...other}
-            onClick={(event) => {
-                if (mode === 'light') {
-                    setMode('dark');
-                } else {
-                    setMode('light');
-                }
-                onClick?.(event);
-            }}
-        >
-            {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
-        </IconButton>
-    );
-}
 
 export const UnauthenticatedPage: FC = () => {
     const { loginWithPopup, isLoading } = useAuth0()

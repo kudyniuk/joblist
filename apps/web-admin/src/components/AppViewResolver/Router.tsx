@@ -1,11 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { JoyOrderDashboardTemplate } from '../Layout/JoyOrderDashboardTemplate';
+import { DashboardTemplate } from '../Layout';
 import { CompanyProfilePage, CreateJobOfferPage, HomePage, JobOffersPage, MessagesPage } from '../../pages';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <JoyOrderDashboardTemplate />,
+    element: <DashboardTemplate />,
     children: [
       {
         path: '/',
