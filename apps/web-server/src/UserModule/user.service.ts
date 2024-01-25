@@ -1,9 +1,10 @@
-import { Inject, Injectable } from "@nestjs/common"
+import { Inject, Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common"
 import { InjectRepository } from "@nestjs/typeorm"
+import { CreateJobOfferDto } from "src/JobOffersModule/create-job-offer.dto"
 import { Repository } from "typeorm"
 
 import { CompaniesService, Company, CreateCompanyDto } from "../CompanyModule"
-import { JobOffer } from "../JobOffersModule"
+import { JobOffer, UpdateJobOfferDto } from "../JobOffersModule"
 import { JobOffersService } from "../JobOffersModule/job-offers.service"
 import { User } from "./user.entity"
 
@@ -16,7 +17,7 @@ export class UserService {
     private companiesService: CompaniesService,
     @Inject(JobOffersService)
     private jobOffersService: JobOffersService,
-  ) {}
+  ) { }
 
   findOne(id: string): Promise<User | undefined> {
     return this.usersRepository.findOne({
@@ -62,5 +63,30 @@ export class UserService {
     const companyId = user.company.id
 
     return this.jobOffersService.findAllByCompany(companyId)
+  }
+
+  async createJobOffer(userId: string, createJobOfferDto: CreateJobOfferDto): Promise<JobOffer> {
+    const user = await this.findOne(userId)
+    const company = user.company
+
+    return this.jobOffersService.save(createJobOfferDto, company)
+  }
+
+  async updateJobOffer(userId: string, updateJobOfferDto: UpdateJobOfferDto): Promise<JobOffer> {
+    const user = await this.findOne(userId)
+    const company = user.company
+    const jobOffer = await this.jobOffersService.findOne(updateJobOfferDto.id)
+
+    console.log("jobOffer", JSON.stringify(jobOffer, null, 4))
+
+    if (!jobOffer) {
+      throw new NotFoundException()
+    }
+
+    if (!jobOffer.company.users.map(user => user.id).includes(userId)) {
+      throw new UnauthorizedException()
+    }
+
+    return this.jobOffersService.save(updateJobOfferDto, company)
   }
 }

@@ -8,7 +8,7 @@ import { JobOffersService } from "./job-offers.service"
 @Controller("jobOffers")
 @ApiTags("Jobs")
 export class JobOffersController {
-  constructor(private readonly jobOffersService: JobOffersService) {}
+  constructor(private readonly jobOffersService: JobOffersService) { }
 
   @Get()
   getAll(): Promise<JobOffer[]> {
@@ -18,15 +18,5 @@ export class JobOffersController {
   @Get(":id")
   findOne(@Param("id") id: number): Promise<JobOffer> {
     return this.jobOffersService.findOne(id)
-  }
-
-  @Post()
-  create(@Body() createJobOfferDto: CreateJobOfferDto): Promise<JobOffer> {
-    return this.jobOffersService.create(createJobOfferDto)
-  }
-
-  @Delete(":id")
-  remove(@Param("id") id: number): Promise<JobOffer> {
-    return this.jobOffersService.removeOne(id)
   }
 }

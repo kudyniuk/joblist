@@ -7,9 +7,9 @@ import { JobOffersController } from "./job-offers.controller"
 import { JobOffersService } from "./job-offers.service"
 
 @Module({
-  imports: [TypeOrmModule.forFeature([JobOffer]), CompaniesModule],
+  imports: [TypeOrmModule.forFeature([JobOffer])],
   controllers: [JobOffersController],
   providers: [JobOffersService],
-  exports: [JobOffersService, CompaniesModule],
+  exports: [JobOffersService],
 })
-export class JobOffersModule {}
+export class JobOffersModule { }

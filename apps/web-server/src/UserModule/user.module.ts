@@ -5,11 +5,12 @@ import { JobOffersModule } from "../JobOffersModule"
 import { UserController } from "./user.controller"
 import { User } from "./user.entity"
 import { UserService } from "./user.service"
+import { CompaniesModule } from "../CompanyModule"
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User]), JobOffersModule],
+  imports: [TypeOrmModule.forFeature([User]), JobOffersModule, CompaniesModule],
   providers: [UserService],
   controllers: [UserController],
   exports: [UserService],
 })
-export class UserModule {}
+export class UserModule { }

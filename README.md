@@ -2,6 +2,12 @@
 
 Job search website.
 
+## Vercel Deployment
+
+[App - https://joblist-web-app.vercel.app/](https://joblist-web-app.vercel.app/) \
+[Admin - https://joblist-web-admin.vercel.app/](https://joblist-web-admin.vercel.app/) \
+[Server - https://joblist-web-server.vercel.app/](https://joblist-web-server.vercel.app/)
+
 ## NX Monorepo
 
 ### Dashboard for Employeers | [[app/web-admin]](/apps/web-admin/)
@@ -33,3 +39,5 @@ Stack: React, Redux & RTK Query, Joy UI, Vite
 - Auth0
 
 **Stack:** NestJS, Auth0, TypeORM, Postgress
+
+## Development - TODO

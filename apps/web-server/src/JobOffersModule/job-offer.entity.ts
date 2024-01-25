@@ -4,7 +4,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
 import { Company } from "../CompanyModule"
 
 @Entity()
-export class JobOffer implements JobOfferI {
+export class JobOffer<CompanyType = Company> implements JobOfferI<CompanyType> {
   @PrimaryGeneratedColumn()
   id: number
 
@@ -24,5 +24,5 @@ export class JobOffer implements JobOfferI {
   type: string
 
   @ManyToOne(() => Company, (company) => company.jobOffers)
-  company: Company
+  company: CompanyType
 }

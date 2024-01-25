@@ -1,30 +1,27 @@
-import { Inject, Injectable } from "@nestjs/common"
+import { Injectable } from "@nestjs/common"
 import { InjectRepository } from "@nestjs/typeorm"
 import { Repository } from "typeorm"
 
-import { CompaniesService } from "../CompanyModule"
+import { Company } from "../CompanyModule"
 import { CreateJobOfferDto } from "./create-job-offer.dto"
 import { JobOffer } from "./job-offer.entity"
+import { UpdateJobOfferDto } from "./update-job-offer.dto"
 
 @Injectable()
 export class JobOffersService {
-  @Inject(CompaniesService)
-  private readonly companiesService: CompaniesService
-
   constructor(
     @InjectRepository(JobOffer)
     private jobOffersRepository: Repository<JobOffer>,
-  ) {}
+  ) { }
 
   findAll(): Promise<JobOffer[]> {
     return this.jobOffersRepository.find({
-      relationLoadStrategy: "join",
-      relations: { company: true },
+      relations: ['company'],
     })
   }
 
   findOne(id: number): Promise<JobOffer> {
-    return this.jobOffersRepository.findOneBy({ id })
+    return this.jobOffersRepository.findOne({ where: { id }, relations: ['company', 'company.users'] })
   }
 
   findAllByCompany(companyId: number): Promise<JobOffer[]> {
@@ -37,9 +34,7 @@ export class JobOffersService {
     })
   }
 
-  async create({ companyId, ...createJobOfferDto }: CreateJobOfferDto): Promise<JobOffer> {
-    const company = await this.companiesService.findOne(companyId)
-
+  async save(createJobOfferDto: CreateJobOfferDto | UpdateJobOfferDto, company: Company): Promise<JobOffer> {
     return this.jobOffersRepository.save({ ...createJobOfferDto, company })
   }
 

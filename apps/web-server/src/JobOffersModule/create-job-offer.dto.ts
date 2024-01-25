@@ -9,6 +9,8 @@ export class CreateJobOfferDto {
   @MinLength(6)
   description: string
 
-  @IsNotEmpty()
-  companyId: number
+  type: string
+  salaryFrom: number
+  salaryTo: number
+
 }

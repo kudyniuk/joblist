@@ -147,7 +147,8 @@ export default function Sidebar() {
             Home
           </SidebarLink>
           <SidebarLink to="/company">Company profile</SidebarLink>
-
+          <SidebarLink to="/jobOffers">All Offers</SidebarLink>
+          <SidebarLink to="/jobOffers/create">Create Job Offer</SidebarLink>
           <ListItem nested>
             <Toggler
               renderToggle={({ open, setOpen }) => (
