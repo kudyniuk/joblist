@@ -12,16 +12,16 @@ export class JobOffersService {
   constructor(
     @InjectRepository(JobOffer)
     private jobOffersRepository: Repository<JobOffer>,
-  ) { }
+  ) {}
 
   findAll(): Promise<JobOffer[]> {
     return this.jobOffersRepository.find({
-      relations: ['company'],
+      relations: ["company"],
     })
   }
 
   findOne(id: number): Promise<JobOffer> {
-    return this.jobOffersRepository.findOne({ where: { id }, relations: ['company', 'company.users'] })
+    return this.jobOffersRepository.findOne({ where: { id }, relations: ["company", "company.users"] })
   }
 
   findAllByCompany(companyId: number): Promise<JobOffer[]> {

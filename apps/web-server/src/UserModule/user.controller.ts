@@ -1,10 +1,10 @@
 import { Body, Controller, Get, NotFoundException, Patch, Post, UseGuards } from "@nestjs/common"
 import { AuthGuard } from "@nestjs/passport"
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger"
-import { CreateJobOfferDto, UpdateJobOfferDto } from "../JobOffersModule"
 
 import { Company, CreateCompanyDto } from "../CompanyModule"
 import { UserId } from "../decorators"
+import { CreateJobOfferDto, UpdateJobOfferDto } from "../JobOffersModule"
 import { JobOffer } from "../JobOffersModule"
 import { UserService } from "./user.service"
 
@@ -13,7 +13,7 @@ import { UserService } from "./user.service"
 @ApiTags("User")
 @ApiBearerAuth()
 export class UserController {
-  constructor(private readonly userService: UserService) { }
+  constructor(private readonly userService: UserService) {}
 
   @Get("company")
   @ApiOperation({ summary: "Return user's company data" })

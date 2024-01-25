@@ -17,7 +17,7 @@ export class UserService {
     private companiesService: CompaniesService,
     @Inject(JobOffersService)
     private jobOffersService: JobOffersService,
-  ) { }
+  ) {}
 
   findOne(id: string): Promise<User | undefined> {
     return this.usersRepository.findOne({
@@ -83,7 +83,7 @@ export class UserService {
       throw new NotFoundException()
     }
 
-    if (!jobOffer.company.users.map(user => user.id).includes(userId)) {
+    if (!jobOffer.company.users.map((user) => user.id).includes(userId)) {
       throw new UnauthorizedException()
     }
 
