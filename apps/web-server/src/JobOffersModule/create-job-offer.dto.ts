@@ -12,5 +12,4 @@ export class CreateJobOfferDto {
   type: string
   salaryFrom: number
   salaryTo: number
-
 }
