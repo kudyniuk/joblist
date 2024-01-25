@@ -1,11 +1,15 @@
 import { Company } from "./Company"
 
-export interface JobOffer {
+export interface JobOffer<CompanyType = null> {
   id: number
   name: string
   description: string
-  company: Company
   salaryFrom: number
   salaryTo: number
   type: string
+
+  company: CompanyType
 }
+
+export type CreateJobOffer = Omit<JobOffer, 'id' | 'company'>
+export type UpdateJobOffer = Omit<JobOffer, 'company'>

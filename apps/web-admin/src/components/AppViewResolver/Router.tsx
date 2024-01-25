@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { JoyOrderDashboardTemplate } from '../Layout/JoyOrderDashboardTemplate';
-import { CompanyProfilePage, HomePage, MessagesPage } from '../../pages';
+import { CompanyProfilePage, CreateJobOfferPage, HomePage, JobOffersPage, MessagesPage } from '../../pages';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +19,14 @@ const router = createBrowserRouter([
         path: 'messages',
         element: <MessagesPage />,
       },
+      {
+        path: 'jobOffers',
+        element: <JobOffersPage />,
+      },
+      {
+        path: 'jobOffers/create',
+        element: <CreateJobOfferPage />
+      }
     ],
   },
 ]);

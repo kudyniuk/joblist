@@ -1,4 +1,4 @@
-import { Stack, Input, Button } from '@mui/joy';
+import { Stack, Input, Button, Skeleton, Box } from '@mui/joy';
 import {
   useGetUserCompanyQuery,
   useUpdateUserCompanyMutation,
@@ -15,7 +15,11 @@ export const CreateCompanyForm: React.FC = () => {
   const { data, isLoading } = useGetUserCompanyQuery();
 
   if (isLoading) {
-    return <div>Is Loading!</div>;
+    return <Box>
+      <Skeleton sx={{ mb: 1 }} width={1} height={36} variant="rectangular" />
+      <Skeleton sx={{ mb: 1 }} width={1} height={36} variant="rectangular" />
+      <Skeleton width={1} height={36} variant="rectangular" />
+    </Box>
   }
 
   return <Form defaultValues={data} />;

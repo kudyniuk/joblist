@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Company, JobOffer } from '@kudyniuk/shared-types';
+import { Company, CreateJobOffer, JobOffer } from '@kudyniuk/shared-types';
 import { RootState } from '../store';
 
 const baseQuery = fetchBaseQuery({
@@ -19,6 +19,7 @@ const baseQuery = fetchBaseQuery({
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: baseQuery,
+  tagTypes: ['JOB_OFFERS'],
   endpoints: (builder) => ({
     getUserCompany: builder.query<Company, void>({
       query: () => `company`,
@@ -35,7 +36,16 @@ export const userApi = createApi({
     }),
     getUserJobOffers: builder.query<JobOffer[], void>({
       query: () => 'jobOffers',
+      providesTags: ['JOB_OFFERS']
     }),
+    createUserJobOffer: builder.mutation<JobOffer, CreateJobOffer>({
+      query: (jobOffer) => ({
+        url: "jobOffers",
+        method: 'POST',
+        body: jobOffer
+      }),
+      invalidatesTags: ["JOB_OFFERS"]
+    })
   }),
 });
 
@@ -43,4 +53,5 @@ export const {
   useGetUserCompanyQuery,
   useUpdateUserCompanyMutation,
   useGetUserJobOffersQuery,
+  useCreateUserJobOfferMutation,
 } = userApi;

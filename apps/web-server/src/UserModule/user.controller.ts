@@ -1,6 +1,7 @@
-import { Body, Controller, Get, NotFoundException, Post, UseGuards } from "@nestjs/common"
+import { Body, Controller, Get, NotFoundException, Patch, Post, UseGuards } from "@nestjs/common"
 import { AuthGuard } from "@nestjs/passport"
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger"
+import { CreateJobOfferDto, UpdateJobOfferDto } from "../JobOffersModule"
 
 import { Company, CreateCompanyDto } from "../CompanyModule"
 import { UserId } from "../decorators"
@@ -12,7 +13,7 @@ import { UserService } from "./user.service"
 @ApiTags("User")
 @ApiBearerAuth()
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Get("company")
   @ApiOperation({ summary: "Return user's company data" })
@@ -51,5 +52,15 @@ export class UserController {
   })
   getJobOffers(@UserId() userId: UserId): Promise<JobOffer[]> {
     return this.userService.findAllUserJobOffers(userId)
+  }
+
+  @Post("jobOffers")
+  async createJobOffer(@UserId() userId: UserId, @Body() createJobOfferDto: CreateJobOfferDto): Promise<JobOffer> {
+    return this.userService.createJobOffer(userId, createJobOfferDto)
+  }
+
+  @Patch("jobOffers")
+  async updateJoboffer(@UserId() userId: UserId, @Body() updateJobOfferDto: UpdateJobOfferDto): Promise<JobOffer> {
+    return this.userService.updateJobOffer(userId, updateJobOfferDto)
   }
 }
