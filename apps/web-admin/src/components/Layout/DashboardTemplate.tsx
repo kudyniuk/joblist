@@ -2,11 +2,12 @@ import { CssVarsProvider } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 
-import Sidebar from './Sidebar';
-import Header from './Header';
+import { Sidebar } from './Sidebar';
+import { Header } from './Header';
 import { Outlet } from 'react-router-dom';
+import { FC } from 'react';
 
-export function JoyOrderDashboardTemplate() {
+export const DashboardTemplate: FC = () => {
   return (
     <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />

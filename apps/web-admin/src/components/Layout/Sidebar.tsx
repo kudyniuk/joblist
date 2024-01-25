@@ -1,4 +1,3 @@
-import * as React from 'react';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -23,13 +22,14 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import BrightnessAutoRoundedIcon from '@mui/icons-material/BrightnessAutoRounded';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-import ColorSchemeToggle from './ColorSchemeToggle';
+import { ColorSchemeToggle } from './ColorSchemeToggle';
 import { closeSidebar } from './utils';
 import { SidebarLink } from './SidebarLink';
 import { Profile } from './Profile';
 import { Link } from 'react-router-dom';
+import { FC, useState } from 'react';
 
-function Toggler({
+const Toggler = ({
   defaultExpanded = false,
   renderToggle,
   children,
@@ -40,10 +40,10 @@ function Toggler({
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   }) => React.ReactNode;
-}) {
-  const [open, setOpen] = React.useState(defaultExpanded);
+}) => {
+  const [open, setOpen] = useState(defaultExpanded);
   return (
-    <React.Fragment>
+    <>
       {renderToggle({ open, setOpen })}
       <Box
         sx={{
@@ -57,11 +57,11 @@ function Toggler({
       >
         {children}
       </Box>
-    </React.Fragment>
+    </>
   );
 }
 
-export default function Sidebar() {
+export const Sidebar: FC = () => {
   return (
     <Sheet
       className="Sidebar"
