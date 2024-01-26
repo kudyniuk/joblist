@@ -4,11 +4,11 @@ import {
 } from '../../store';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import React from 'react';
-import { CreateJobOffer, JobOffer } from '@kudyniuk/shared-types'
+import { ICreateJobOffer, IJobOffer } from '@kudyniuk/shared-types'
 
-type FormValues = CreateJobOffer
+type FormValues = ICreateJobOffer
 
-export const UpdateJobOfferForm: React.FC<{ jobOffer: JobOffer }> = ({ jobOffer }) => {
+export const UpdateJobOfferForm: React.FC<{ jobOffer: IJobOffer }> = ({ jobOffer }) => {
   return <CreateJobOfferForm defaultValues={jobOffer} />;
 };
 
@@ -22,7 +22,15 @@ export const CreateJobOfferForm: React.FC<{ defaultValues?: FormValues }> = ({
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    updateUserJobOffer(data);
+
+    const fixedValues: FormValues = {
+      ...data,
+      salaryFrom: Number(data.salaryFrom),
+      salaryTo: Number(data.salaryTo)
+    }
+
+
+    updateUserJobOffer(fixedValues);
   };
 
   return (
@@ -41,11 +49,13 @@ export const CreateJobOfferForm: React.FC<{ defaultValues?: FormValues }> = ({
           {...register('type')}
         />
         <Input
+          type="number"
           placeholder="Job Offer Salary From"
           required
           {...register('salaryFrom')}
         />
         <Input
+          type="number"
           placeholder="Job Offer Salary To"
           required
           {...register('salaryTo')}

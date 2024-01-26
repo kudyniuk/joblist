@@ -8,6 +8,7 @@
     "start:dev:prod": "nx run-many -t start:dev:prod --output-style=stream",
     "start:database": "nx start:database @kudyniuk/web-server",
     "storybook": "nx storybook @kudyniuk/components",
+    "studio": "nx studio @kudyniuk/web-server",
     "lint": "eslint \"./**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint --ignore-path .gitignore --fix \"./**/*.{js,jsx,ts,tsx}\""
   },

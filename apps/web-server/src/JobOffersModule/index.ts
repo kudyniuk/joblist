@@ -1,4 +1,2 @@
-export * from "./create-job-offer.dto"
-export * from "./job-offer.entity"
+export * from "../UserJobOffersModule/job-offer.dto"
 export * from "./job-offers.module"
-export * from "./update-job-offer.dto"
