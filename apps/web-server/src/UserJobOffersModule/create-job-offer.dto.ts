@@ -1,5 +1,5 @@
-import { IsNotEmpty, MaxLength, MinLength } from 'class-validator'
-import { ICreateJobOffer, IUpdateJobOffer } from "@kudyniuk/shared-types"
+import { ICreateJobOffer } from "@kudyniuk/shared-types"
+import { IsNotEmpty, MinLength } from "class-validator"
 
 export class CreateJobOfferDto implements ICreateJobOffer {
   @IsNotEmpty()

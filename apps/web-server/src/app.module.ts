@@ -12,4 +12,4 @@ import { UserJobOffersModule } from "./UserJobOffersModule"
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {}

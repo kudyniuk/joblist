@@ -76,7 +76,7 @@ importers:
         specifier: 10.4.17
         version: 10.4.17(postcss@8.4.33)
       eslint:
-        specifier: ^8.56.0
+        specifier: ^8.53.0
         version: 8.56.0
       eslint-config-prettier:
         specifier: ^9.1.0
