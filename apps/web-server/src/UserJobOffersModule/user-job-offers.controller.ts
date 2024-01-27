@@ -3,7 +3,8 @@ import { AuthGuard } from "@nestjs/passport"
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger"
 
 import { UserId } from "../decorators"
-import { CreateJobOfferDto, UpdateJobOfferDto } from "@kudyniuk/validators"
+import { CreateJobOfferDto } from "./create-job-offer.dto"
+import { UpdateJobOfferDto } from './update-job-offer.dto'
 import { UserJobOffersService } from "./user-job-offers.service"
 
 @Controller("user/job-offers")

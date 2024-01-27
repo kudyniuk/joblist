@@ -3,7 +3,8 @@ import { JobOffer } from "@prisma/client"
 
 import { PrismaService } from "../PrismaModule"
 import { UserService } from "../UserModule"
-import { CreateJobOfferDto, UpdateJobOfferDto } from "@kudyniuk/validators"
+import { CreateJobOfferDto } from "./create-job-offer.dto"
+import { UpdateJobOfferDto } from './update-job-offer.dto'
 
 @Injectable()
 export class UserJobOffersService {
