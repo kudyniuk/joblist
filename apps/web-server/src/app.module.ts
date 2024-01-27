@@ -1,12 +1,14 @@
 import { Module } from "@nestjs/common"
 
 import { AuthZModule } from "./AuthZModule"
-import { DatabaseModule } from "./database.module"
+import { CompaniesModule } from "./CompanyModule"
+import { JobOffersModule } from "./JobOffersModule"
 import { StatsModule } from "./StatsModule"
-import { UserModule } from "./UserModule/user.module"
+import { UserCompanyModule } from "./UserComapnyModule"
+import { UserJobOffersModule } from "./UserJobOffersModule"
 
 @Module({
-  imports: [DatabaseModule, AuthZModule, UserModule, StatsModule],
+  imports: [AuthZModule, UserCompanyModule, UserJobOffersModule, JobOffersModule, CompaniesModule, StatsModule],
   controllers: [],
   providers: [],
 })

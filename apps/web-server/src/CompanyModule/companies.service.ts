@@ -1,26 +1,20 @@
-import { Injectable } from "@nestjs/common"
-import { InjectRepository } from "@nestjs/typeorm"
-import { Repository } from "typeorm"
+import { Inject, Injectable } from "@nestjs/common"
+import { Company } from "@prisma/client"
 
-import { Company } from "./company.entity"
-import { CreateCompanyDto } from "./create-company.dto"
+import { PrismaService } from "../PrismaModule"
 
 @Injectable()
 export class CompaniesService {
   constructor(
-    @InjectRepository(Company)
-    private companiesRepository: Repository<Company>,
+    @Inject(PrismaService)
+    private prismaService: PrismaService,
   ) {}
 
+  findOne(id: number): Promise<Company | null> {
+    return this.prismaService.company.findUnique({ where: { id } })
+  }
+
   findAll(): Promise<Company[]> {
-    return this.companiesRepository.find()
-  }
-
-  findOne(id: number): Promise<Company> {
-    return this.companiesRepository.findOneBy({ id })
-  }
-
-  save(createCompanyDto: CreateCompanyDto): Promise<Company> {
-    return this.companiesRepository.save(createCompanyDto)
+    return this.prismaService.company.findMany()
   }
 }

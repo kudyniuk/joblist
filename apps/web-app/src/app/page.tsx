@@ -1,10 +1,10 @@
 import { Button, CategoryCard, FactCard, Input, JobOfferCard, RegisterNow } from "@kudyniuk/components"
-import { JobOffer, Stats } from "@kudyniuk/shared-types"
+import { IJobOffer, Stats } from "@kudyniuk/shared-types"
 import Image from "next/image"
 
 import { ContentLimiter } from "@/components/ContentLimiter"
 
-const getJobOffers = async (): Promise<JobOffer[]> => {
+const getJobOffers = async (): Promise<IJobOffer[]> => {
   const res = await fetch(process.env.API_URL + "jobOffers", {
     next: { revalidate: 10 },
   })

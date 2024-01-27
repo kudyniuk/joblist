@@ -1,6 +1,6 @@
 import { Company } from "./Company"
 
-export interface JobOffer<CompanyType = Company> {
+export interface IJobOffer {
   id: number
   name: string
   description: string
@@ -8,8 +8,8 @@ export interface JobOffer<CompanyType = Company> {
   salaryTo: number
   type: string
 
-  company: CompanyType
+  company: Company
 }
 
-export type CreateJobOffer = Omit<JobOffer, "id" | "company">
-export type UpdateJobOffer = Omit<JobOffer, "company">
+export type ICreateJobOffer = Omit<IJobOffer, "id" | "company">
+export type IUpdateJobOffer = Partial<ICreateJobOffer>

@@ -1,47 +1,42 @@
-import { Injectable } from "@nestjs/common"
-import { InjectRepository } from "@nestjs/typeorm"
-import { Repository } from "typeorm"
+import { Inject, Injectable } from "@nestjs/common"
 
-import { Company } from "../CompanyModule"
-import { CreateJobOfferDto } from "./create-job-offer.dto"
-import { JobOffer } from "./job-offer.entity"
-import { UpdateJobOfferDto } from "./update-job-offer.dto"
+import { PrismaService } from "../PrismaModule"
 
 @Injectable()
 export class JobOffersService {
   constructor(
-    @InjectRepository(JobOffer)
-    private jobOffersRepository: Repository<JobOffer>,
+    @Inject(PrismaService)
+    private prismaService: PrismaService,
   ) {}
 
-  findAll(): Promise<JobOffer[]> {
-    return this.jobOffersRepository.find({
-      relations: ["company"],
+  findAll() {
+    return this.prismaService.jobOffer.findMany({
+      include: {
+        company: true,
+      },
     })
   }
 
-  findOne(id: number): Promise<JobOffer> {
-    return this.jobOffersRepository.findOne({ where: { id }, relations: ["company", "company.users"] })
+  findOne(id: number) {
+    return this.prismaService.jobOffer.findUnique({
+      where: { id },
+      include: {
+        company: {
+          include: {
+            users: true,
+          },
+        },
+      },
+    })
   }
 
-  findAllByCompany(companyId: number): Promise<JobOffer[]> {
-    return this.jobOffersRepository.find({
+  findAllByCompany(companyId: number) {
+    return this.prismaService.jobOffer.findMany({
       where: {
         company: {
           id: companyId,
         },
       },
     })
-  }
-
-  async save(createJobOfferDto: CreateJobOfferDto | UpdateJobOfferDto, company: Company): Promise<JobOffer> {
-    return this.jobOffersRepository.save({ ...createJobOfferDto, company })
-  }
-
-  async removeOne(id: number): Promise<JobOffer> {
-    const jobOffer = await this.findOne(id)
-    const deletedJobOffers = await this.jobOffersRepository.remove([jobOffer])
-
-    return deletedJobOffers[0]
   }
 }
