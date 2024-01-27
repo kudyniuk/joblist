@@ -1,10 +1,10 @@
-import { JobOffer } from "@kudyniuk/shared-types"
+import { IJobOffer } from "@kudyniuk/shared-types"
 import classNames from "classnames"
 import { FC } from "react"
 
 type Props = {
   className?: string
-} & Omit<JobOffer, "description" | "id">
+} & Omit<IJobOffer, "description" | "id">
 
 export const JobOfferCard: FC<Props> = ({ name, type, salaryFrom, salaryTo, company, className }) => {
   return (

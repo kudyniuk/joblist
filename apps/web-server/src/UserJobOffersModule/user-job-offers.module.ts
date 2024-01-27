@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common"
-import { UserModule } from "src/UserModule"
+import { UserModule } from "../UserModule"
 
 import { PrismaModule } from "../PrismaModule"
 import { UserJobOffersController } from "./user-job-offers.controller"
@@ -11,4 +11,4 @@ import { UserJobOffersService } from "./user-job-offers.service"
   controllers: [UserJobOffersController],
   exports: [UserJobOffersService],
 })
-export class UserJobOffersModule {}
+export class UserJobOffersModule { }

@@ -3,14 +3,14 @@ import { AuthGuard } from "@nestjs/passport"
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger"
 
 import { UserId } from "../decorators"
-import { CreateJobOfferDto, UpdateJobOfferDto } from "./job-offer.dto"
+import { CreateJobOfferDto, UpdateJobOfferDto } from "@kudyniuk/validators"
 import { UserJobOffersService } from "./user-job-offers.service"
 
 @Controller("user/job-offers")
 @UseGuards(AuthGuard("jwt"))
 @ApiTags("User")
 export class UserJobOffersController {
-  constructor(private readonly userJobOffersService: UserJobOffersService) {}
+  constructor(private readonly userJobOffersService: UserJobOffersService) { }
 
   @Get()
   @ApiOperation({ summary: "Return user's job offers data" })

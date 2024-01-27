@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Company, CreateJobOffer, JobOffer } from '@kudyniuk/shared-types';
+import { Company, ICreateJobOffer, IJobOffer, IUpdateJobOffer } from '@kudyniuk/shared-types';
 import { RootState } from '../store';
 
 const baseQuery = fetchBaseQuery({
@@ -34,15 +34,23 @@ export const userApi = createApi({
         body: company,
       }),
     }),
-    getUserJobOffers: builder.query<JobOffer[], void>({
-      query: () => 'jobOffers',
+    getUserJobOffers: builder.query<IJobOffer[], void>({
+      query: () => 'job-offers',
       providesTags: ['JOB_OFFERS']
     }),
-    createUserJobOffer: builder.mutation<JobOffer, CreateJobOffer>({
+    createUserJobOffer: builder.mutation<IJobOffer, ICreateJobOffer>({
       query: (jobOffer) => ({
-        url: "jobOffers",
+        url: "job-offers",
         method: 'POST',
         body: jobOffer
+      }),
+      invalidatesTags: ["JOB_OFFERS"]
+    }),
+    updateUserJobOffer: builder.mutation<IJobOffer, IUpdateJobOffer & { id: number }>({
+      query: ({ id, ...body }) => ({
+        url: `job-offers/${id}`,
+        method: "PATCH",
+        body,
       }),
       invalidatesTags: ["JOB_OFFERS"]
     })
@@ -54,4 +62,5 @@ export const {
   useUpdateUserCompanyMutation,
   useGetUserJobOffersQuery,
   useCreateUserJobOfferMutation,
+  useUpdateUserJobOfferMutation
 } = userApi;

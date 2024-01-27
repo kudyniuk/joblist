@@ -1,6 +1,5 @@
+import { IsNotEmpty, MaxLength, MinLength } from 'class-validator'
 import { ICreateJobOffer, IUpdateJobOffer } from "@kudyniuk/shared-types"
-import { PartialType } from "@nestjs/swagger"
-import { IsNotEmpty, MinLength } from "class-validator"
 
 export class CreateJobOfferDto implements ICreateJobOffer {
   @IsNotEmpty()
@@ -15,5 +14,3 @@ export class CreateJobOfferDto implements ICreateJobOffer {
   salaryFrom: number
   salaryTo: number
 }
-
-export class UpdateJobOfferDto extends PartialType(CreateJobOfferDto) implements IUpdateJobOffer {}

@@ -20,6 +20,9 @@
     },
     "build": {
       "dependsOn": ["^build", "prebuild"]
+    },
+    "start:dev": {
+      "dependsOn": ["^build"]
     }
   }
 }

@@ -3,7 +3,7 @@ import { JobOffer } from "@prisma/client"
 
 import { PrismaService } from "../PrismaModule"
 import { UserService } from "../UserModule"
-import { CreateJobOfferDto, UpdateJobOfferDto } from "./job-offer.dto"
+import { CreateJobOfferDto, UpdateJobOfferDto } from "@kudyniuk/validators"
 
 @Injectable()
 export class UserJobOffersService {
@@ -12,7 +12,7 @@ export class UserJobOffersService {
     private prismaService: PrismaService,
     @Inject(UserService)
     private userService: UserService,
-  ) {}
+  ) { }
 
   async findAll(userId: string): Promise<JobOffer[]> {
     const user = await this.userService.findUnique(userId)
