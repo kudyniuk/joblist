@@ -29,7 +29,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder().setTitle("Joblist API").setDescription("The joblist API description").setVersion("1.0").build()
   const document = SwaggerModule.createDocument(app, config)
-  SwaggerModule.setup("/api", app, document, swaggerCDN)
+  SwaggerModule.setup("/", app, document, swaggerCDN)
 
   await app.listen(3001)
 }
