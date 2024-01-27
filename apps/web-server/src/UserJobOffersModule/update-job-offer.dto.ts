@@ -1,5 +1,6 @@
-import { PartialType } from "@nestjs/mapped-types"
 import { IUpdateJobOffer } from "@kudyniuk/shared-types"
-import { CreateJobOfferDto } from './create-job-offer.dto'
+import { PartialType } from "@nestjs/mapped-types"
 
-export class UpdateJobOfferDto extends PartialType(CreateJobOfferDto) implements IUpdateJobOffer { }
+import { CreateJobOfferDto } from "./create-job-offer.dto"
+
+export class UpdateJobOfferDto extends PartialType(CreateJobOfferDto) implements IUpdateJobOffer {}

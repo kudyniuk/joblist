@@ -4,14 +4,14 @@ import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger"
 
 import { UserId } from "../decorators"
 import { CreateJobOfferDto } from "./create-job-offer.dto"
-import { UpdateJobOfferDto } from './update-job-offer.dto'
+import { UpdateJobOfferDto } from "./update-job-offer.dto"
 import { UserJobOffersService } from "./user-job-offers.service"
 
 @Controller("user/job-offers")
 @UseGuards(AuthGuard("jwt"))
 @ApiTags("User")
 export class UserJobOffersController {
-  constructor(private readonly userJobOffersService: UserJobOffersService) { }
+  constructor(private readonly userJobOffersService: UserJobOffersService) {}
 
   @Get()
   @ApiOperation({ summary: "Return user's job offers data" })
