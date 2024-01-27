@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common"
 
+import { PrismaModule } from "../PrismaModule"
 import { JobOffersController } from "./job-offers.controller"
 import { JobOffersService } from "./job-offers.service"
-import { PrismaModule } from "../PrismaModule"
 
 @Module({
   imports: [PrismaModule],
@@ -10,4 +10,4 @@ import { PrismaModule } from "../PrismaModule"
   providers: [JobOffersService],
   exports: [JobOffersService],
 })
-export class JobOffersModule { }
+export class JobOffersModule {}

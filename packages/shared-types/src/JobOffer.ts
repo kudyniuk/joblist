@@ -13,8 +13,3 @@ export interface IJobOffer {
 
 export type ICreateJobOffer = Omit<IJobOffer, "id" | "company">
 export type IUpdateJobOffer = Partial<ICreateJobOffer>
-
-
-
-
-

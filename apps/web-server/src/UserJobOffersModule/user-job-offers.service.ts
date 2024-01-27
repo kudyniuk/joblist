@@ -1,9 +1,9 @@
-import { ForbiddenException, Inject, Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common"
+import { ForbiddenException, Inject, Injectable, NotFoundException } from "@nestjs/common"
+import { JobOffer } from "@prisma/client"
 
 import { PrismaService } from "../PrismaModule"
-import { JobOffer } from '@prisma/client';
-import { UserService } from "../UserModule";
-import { CreateJobOfferDto, UpdateJobOfferDto } from "./job-offer.dto";
+import { UserService } from "../UserModule"
+import { CreateJobOfferDto, UpdateJobOfferDto } from "./job-offer.dto"
 
 @Injectable()
 export class UserJobOffersService {
@@ -11,16 +11,15 @@ export class UserJobOffersService {
     @Inject(PrismaService)
     private prismaService: PrismaService,
     @Inject(UserService)
-    private userService: UserService
-  ) { }
-
+    private userService: UserService,
+  ) {}
 
   async findAll(userId: string): Promise<JobOffer[]> {
     const user = await this.userService.findUnique(userId)
     const companyId = user?.company.id
 
     return this.prismaService.jobOffer.findMany({
-      where: { companyId }
+      where: { companyId },
     })
   }
 
@@ -37,13 +36,14 @@ export class UserJobOffersService {
 
   async update(jobOfferId: number, userId: string, updateJobOfferDto: UpdateJobOfferDto): Promise<JobOffer> {
     const jobOffer = await this.prismaService.jobOffer.findUnique({
-      where: { id: jobOfferId }, include: {
+      where: { id: jobOfferId },
+      include: {
         company: {
           include: {
-            users: true
-          }
-        }
-      }
+            users: true,
+          },
+        },
+      },
     })
 
     if (!jobOffer) {

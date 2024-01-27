@@ -1,17 +1,17 @@
-import { Body, Controller, Get, NotFoundException, Param, ParseIntPipe, Patch, Post, UseGuards } from "@nestjs/common"
+import { Body, Controller, Get, NotFoundException, Post, UseGuards } from "@nestjs/common"
 import { AuthGuard } from "@nestjs/passport"
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger"
-
-import { CreateCompanyDto } from "./create-company.dto"
-import { UserId } from "../decorators"
-import { UserCompanyService } from "./user-company.service"
 import { Company } from "@prisma/client"
+
+import { UserId } from "../decorators"
+import { CreateCompanyDto } from "./create-company.dto"
+import { UserCompanyService } from "./user-company.service"
 
 @Controller("user/company")
 @UseGuards(AuthGuard("jwt"))
 @ApiTags("User")
 export class UserCompanyController {
-  constructor(private readonly userCompanyService: UserCompanyService) { }
+  constructor(private readonly userCompanyService: UserCompanyService) {}
 
   @Get()
   @ApiOperation({ summary: "Return user's company data" })

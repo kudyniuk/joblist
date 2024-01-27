@@ -1,4 +1,4 @@
-import { Body, Controller, Get, NotFoundException, Param, ParseIntPipe, Patch, Post, UseGuards } from "@nestjs/common"
+import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, UseGuards } from "@nestjs/common"
 import { AuthGuard } from "@nestjs/passport"
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger"
 
@@ -10,7 +10,7 @@ import { UserJobOffersService } from "./user-job-offers.service"
 @UseGuards(AuthGuard("jwt"))
 @ApiTags("User")
 export class UserJobOffersController {
-  constructor(private readonly userJobOffersService: UserJobOffersService) { }
+  constructor(private readonly userJobOffersService: UserJobOffersService) {}
 
   @Get()
   @ApiOperation({ summary: "Return user's job offers data" })
@@ -28,7 +28,7 @@ export class UserJobOffersController {
   }
 
   @Patch(":id")
-  async updateJoboffer(@Param('id', ParseIntPipe) id: number, @UserId() userId: UserId, @Body() updateJobOfferDto: UpdateJobOfferDto) {
+  async updateJoboffer(@Param("id", ParseIntPipe) id: number, @UserId() userId: UserId, @Body() updateJobOfferDto: UpdateJobOfferDto) {
     return this.userJobOffersService.update(id, userId, updateJobOfferDto)
   }
 }

@@ -5,15 +5,15 @@ import { PrismaService } from "../PrismaModule"
 export class UserService {
   constructor(
     @Inject(PrismaService)
-    private prismaService: PrismaService
-  ) { }
+    private prismaService: PrismaService,
+  ) {}
 
   findUnique(id: string) {
     return this.prismaService.user.findUnique({
       where: { id },
       include: {
-        company: true
-      }
+        company: true,
+      },
     })
   }
 
@@ -21,8 +21,8 @@ export class UserService {
     return this.prismaService.user.create({
       data: {
         id: sub,
-        companyId: companyId
-      }
+        companyId: companyId,
+      },
     })
   }
 }

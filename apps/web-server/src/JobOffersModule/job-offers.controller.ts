@@ -6,7 +6,7 @@ import { JobOffersService } from "./job-offers.service"
 @Controller("jobOffers")
 @ApiTags("Jobs")
 export class JobOffersController {
-  constructor(private jobOffersService: JobOffersService) { }
+  constructor(private jobOffersService: JobOffersService) {}
 
   @Get()
   getAll() {

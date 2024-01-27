@@ -1,8 +1,8 @@
 import { Inject, Injectable } from "@nestjs/common"
-
-import { CreateCompanyDto } from "./create-company.dto"
-import { PrismaService } from "../PrismaModule"
 import { UserService } from "src/UserModule"
+
+import { PrismaService } from "../PrismaModule"
+import { CreateCompanyDto } from "./create-company.dto"
 
 @Injectable()
 export class UserCompanyService {
@@ -10,9 +10,8 @@ export class UserCompanyService {
     @Inject(PrismaService)
     private prismaService: PrismaService,
     @Inject(UserService)
-    private userService: UserService
-  ) { }
-
+    private userService: UserService,
+  ) {}
 
   async findUnique(userId: string) {
     const user = await this.userService.findUnique(userId)
@@ -35,8 +34,7 @@ export class UserCompanyService {
       data: {
         ...user.company,
         ...createCompanyDto,
-      }
+      },
     })
   }
-
 }

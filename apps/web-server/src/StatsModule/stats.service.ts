@@ -11,7 +11,7 @@ export class StatsService {
     private companiesService: CompaniesService,
     @Inject(JobOffersService)
     private jobOffersService: JobOffersService,
-  ) { }
+  ) {}
 
   async getStats(): Promise<Stats> {
     const companies = await this.companiesService.findAll()
