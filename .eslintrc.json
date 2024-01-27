@@ -1,15 +1,12 @@
 {
   "root": true,
+  "ignorePatterns": ["**/*/dist"],
   "env": {
     "node": true,
     "jest": true
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint/eslint-plugin",
-    "react",
-    "simple-import-sort"
-  ],
+  "plugins": ["@typescript-eslint/eslint-plugin", "react", "simple-import-sort"],
   "extends": [
     "prettier",
     "plugin:@typescript-eslint/recommended",

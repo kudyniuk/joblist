@@ -1,19 +1,19 @@
 {
   "name": "@kudyniuk/components",
   "type": "module",
-  "private": true,
   "version": "0.0.0",
   "sideEffects": false,
+  "main": "./dist/components.umd.cjs",
+  "module": "./dist/components.js",
   "types": "./dist/index.d.ts",
   "files:": [
     "dist"
   ],
   "scripts": {
     "start:dev": "vite build",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "build:new": "tsc && sass src:dist && babel dist --out-dir dist"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@kudyniuk/shared-types": "workspace:*",
@@ -43,10 +43,13 @@
     "vite-plugin-svgr": "^4.2.0"
   },
   "exports": {
-    ".": [
-      "./dist/components.js",
-      "./dist/index.d.ts"
-    ],
+    ".": {
+      "import": [
+        "./dist/components.js",
+        "./dist/index.d.ts"
+      ],
+      "require": "./dist/components.umd.cjs"
+    },
     "./style": "./dist/style.css"
   }
 }
